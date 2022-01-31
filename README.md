@@ -1,4 +1,5 @@
 # Rei Language Server
+An open source language server extension for VSCode.
 
 ## Features
 - Syntax Highlighting

@@ -13,8 +13,17 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.rei",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+				"match": "\\b(if|while|for|ret)\\b"
+			},
+			{
+				"name": "keyword.variable.rei",
+				"match": "\\b(var|val|const)\\b"
+			},
+			{
+				"name": "keyword.operations.rei",
+				"match": "\\b[*+-/.]\\b"
+			}
+		]
 		},
 		"strings": {
 			"name": "string.quoted.double.rei",
