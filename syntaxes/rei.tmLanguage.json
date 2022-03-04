@@ -22,6 +22,10 @@
 			{
 				"name": "keyword.operations.rei",
 				"match": "\\b[*+-/.]\\b"
+			},
+			{
+				"name": "comment.line.double-slash",
+				"match": "\\b\/\/.*\\b"
 			}
 		]
 		},
