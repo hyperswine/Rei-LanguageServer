@@ -7,36 +7,84 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#entities"
+		},
+		{
+			"include": "#storages"
+		},
+		{
+			"include": "#variables"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.rei",
-				"match": "\\b(if|while|for|ret)\\b"
-			},
-			{
-				"name": "keyword.variable.rei",
-				"match": "\\b(var|val|const)\\b"
-			},
-			{
-				"name": "keyword.operations.rei",
-				"match": "\\b[*+-/.]\\b"
-			},
-			{
-				"name": "comment.line.double-slash",
-				"match": "\\b\/\/.*\\b"
-			}
-		]
+			"patterns": [
+				{
+					"name": "keyword.other.rei",
+					"match": "\\b(package|mod|import)\\b"
+				},
+				{
+					"name": "keyword.control.rei",
+					"match": "\\b(if|while|for|return)\\b"
+				},
+				{
+					"name": "keyword.operator.rei",
+					"match": "([\\*+-/\\.]|or|in)"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.rei",
 			"begin": "\"",
-			"end": "\"",
+			"end": "\""
+		},
+		"comments": {
+			"name": "rei-comments",
 			"patterns": [
 				{
-					"name": "constant.character.escape.rei",
-					"match": "\\\\."
+					"name": "comment.line.number-sign",
+					"match": "#.*"
+				},
+				{
+					"name": "comment.block",
+					"match": "\\/\\*[A-Za-z0-9_ \n\t]*\\*\\/"
+				}
+			]
+		},
+		"entities": {
+			"patterns": [
+				{
+					"name": "entity.name.function.rei",
+					"match": "fn"
+				}
+			]
+		},
+		"storages": {
+			"patterns": [
+				{
+					"name": "storage.type.rei",
+					"match": "\\b(class|trait|object|let|const)\\b"
+				},
+				{
+					"name": "storage.modifier.rei",
+					"match": "\\b(static)\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.language",
+					"match": "self"
+				},
+				{
+					"name": "variable.other",
+					"match": "\\$[A-Za-z0-9_]+"
 				}
 			]
 		}
