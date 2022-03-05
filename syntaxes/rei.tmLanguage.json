@@ -3,6 +3,9 @@
 	"name": "Rei",
 	"patterns": [
 		{
+			"include": "#expression"
+		},
+		{
 			"include": "#keywords"
 		},
 		{
@@ -22,6 +25,40 @@
 		}
 	],
 	"repository": {
+		"expression": {
+			"patterns": [
+				{
+					"include": "#letter"
+				},
+				{
+					"include": "#paren-expression"
+				}
+			]
+		},
+		"letter": {
+			"match": "[A-Za-z]",
+			"name": "keyword.letter"
+		},
+		"paren-expression": {
+			"begin": "\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.paren.open"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.paren.close"
+				}
+			},
+			"name": "expression.group",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
 		"keywords": {
 			"patterns": [
 				{

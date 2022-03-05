@@ -1,0 +1,67 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: Rei
+patterns:
+  - include: '#expression'
+  - include: '#keywords'
+  - include: '#strings'
+  - include: '#comments'
+  - include: '#entities'
+  - include: '#storages'
+  - include: '#variables'
+repository:
+  expression:
+    patterns:
+      - include: '#letter'
+      - include: '#paren-expression'
+  letter:
+    match: '[A-Za-z]'
+    name: keyword.letter
+  paren-expression:
+    begin: \(
+    end: \)
+    beginCaptures:
+      '0':
+        name: punctuation.paren.open
+    endCaptures:
+      '0':
+        name: punctuation.paren.close
+    name: expression.group
+    patterns:
+      - include: '#expression'
+  keywords:
+    patterns:
+      - name: keyword.other.rei
+        match: \b(package|mod|import)\b
+      - name: keyword.control.rei
+        match: \b(if|while|for|return)\b
+      - name: keyword.operator.rei
+        match: ([\*+-/\.]|or|in)
+  strings:
+    name: string.quoted.double.rei
+    begin: '"'
+    end: '"'
+  comments:
+    name: rei-comments
+    patterns:
+      - name: comment.line.number-sign
+        match: '#.*'
+      - name: comment.block
+        match: "\\/\\*[A-Za-z0-9_ \n\t]*\\*\\/"
+  entities:
+    patterns:
+      - name: entity.name.function.rei
+        match: fn
+  storages:
+    patterns:
+      - name: storage.type.rei
+        match: \b(class|trait|object|let|const)\b
+      - name: storage.modifier.rei
+        match: \b(static)\b
+  variables:
+    patterns:
+      - name: variable.language
+        match: self
+      - name: variable.other
+        match: \$[A-Za-z0-9_]+
+scopeName: source.rei
+

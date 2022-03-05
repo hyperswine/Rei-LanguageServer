@@ -10,16 +10,28 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "rei",
-            "aliases": ["Rei", "rei"],
-            "extensions": [".rei"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "rei",
-            "scopeName": "source.rei",
-            "path": "./syntaxes/rei.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "rei",
+                "aliases": [
+                    "Rei",
+                    "rei"
+                ],
+                "extensions": [
+                    ".rei"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "rei",
+                "scopeName": "source.rei",
+                "path": "./syntaxes/rei.tmLanguage.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "js-yaml": "^4.1.0"
     }
 }
