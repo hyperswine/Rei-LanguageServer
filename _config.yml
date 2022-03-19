@@ -21,3 +21,6 @@ aux_links:
     - "https://github.com/hyperswine/rei-lsp"
 
 footer_content: "Rei<sup>TM</sup>"
+
+plugins:
+  - "jekyll-spaceship"
