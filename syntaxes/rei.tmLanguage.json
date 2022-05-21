@@ -48,76 +48,6 @@
             ]
         },
         {
-            "comment": "macro type metavariables",
-            "name": "meta.macro.metavariable.type.rust",
-            "match": "(\\$)((crate)|([A-Z][A-Za-z0-9_]*))((:)(block|expr|ident|item|lifetime|literal|meta|path?|stmt|tt|ty|vis))?",
-            "captures": {
-                "1": {
-                    "name": "keyword.operator.macro.dollar.rust"
-                },
-                "3": {
-                    "name": "keyword.other.crate.rust"
-                },
-                "4": {
-                    "name": "entity.name.type.metavariable.rust"
-                },
-                "6": {
-                    "name": "keyword.operator.key-value.rust"
-                },
-                "7": {
-                    "name": "variable.other.metavariable.specifier.rust"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#keywords"
-                }
-            ]
-        },
-        {
-            "comment": "macro metavariables",
-            "name": "meta.macro.metavariable.rust",
-            "match": "(\\$)([a-z][A-Za-z0-9_]*)((:)(block|expr|ident|item|lifetime|literal|meta|path?|stmt|tt|ty|vis))?",
-            "captures": {
-                "1": {
-                    "name": "keyword.operator.macro.dollar.rust"
-                },
-                "2": {
-                    "name": "variable.other.metavariable.name.rust"
-                },
-                "4": {
-                    "name": "keyword.operator.key-value.rust"
-                },
-                "5": {
-                    "name": "variable.other.metavariable.specifier.rust"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#keywords"
-                }
-            ]
-        },
-        {
-            "comment": "macro rules",
-            "name": "meta.macro.rules.rust",
-            "match": "\\b(macro_rules!)\\s+(([a-z0-9_]+)|([A-Z][a-z0-9_]*))\\s+(\\{)",
-            "captures": {
-                "1": {
-                    "name": "entity.name.function.macro.rules.rust"
-                },
-                "3": {
-                    "name": "entity.name.function.macro.rust"
-                },
-                "4": {
-                    "name": "entity.name.type.macro.rust"
-                },
-                "5": {
-                    "name": "punctuation.brackets.curly.rust"
-                }
-            }
-        },
-        {
             "comment": "attributes",
             "name": "meta.attribute.rust",
             "begin": "(#)(\\!?)(\\[)",
@@ -275,9 +205,6 @@
         },
         {
             "include": "#lifetimes"
-        },
-        {
-            "include": "#macros"
         },
         {
             "include": "#namespaces"
@@ -502,9 +429,6 @@
                             "include": "#lifetimes"
                         },
                         {
-                            "include": "#macros"
-                        },
-                        {
                             "include": "#namespaces"
                         },
                         {
@@ -565,9 +489,6 @@
                             "include": "#lifetimes"
                         },
                         {
-                            "include": "#macros"
-                        },
-                        {
                             "include": "#namespaces"
                         },
                         {
@@ -625,9 +546,6 @@
                             "include": "#lifetimes"
                         },
                         {
-                            "include": "#macros"
-                        },
-                        {
                             "include": "#namespaces"
                         },
                         {
@@ -656,7 +574,7 @@
                 {
                     "comment": "storage keywords",
                     "name": "keyword.other.rust storage.type.rust",
-                    "match": "\\b(extern|let|macro|mod)\\b"
+                    "match": "\\b(extern|let|mod)\\b"
                 },
                 {
                     "comment": "const keyword",
@@ -808,16 +726,6 @@
                     "comment": "hashrocket, fat arrow",
                     "name": "keyword.operator.arrow.fat.rust",
                     "match": "=>"
-                },
-                {
-                    "comment": "dollar macros",
-                    "name": "keyword.operator.macro.dollar.rust",
-                    "match": "\\$"
-                },
-                {
-                    "comment": "question mark operator, questionably sized, macro kleene matcher",
-                    "name": "keyword.operator.question.rust",
-                    "match": "\\?"
                 }
             ]
         },
@@ -860,23 +768,6 @@
                         },
                         "3": {
                             "name": "entity.name.type.lifetime.rust"
-                        }
-                    }
-                }
-            ]
-        },
-        "macros": {
-            "patterns": [
-                {
-                    "comment": "macros",
-                    "name": "meta.macro.rust",
-                    "match": "(([a-z_][A-Za-z0-9_]*!)|([A-Z_][A-Za-z0-9_]*!))",
-                    "captures": {
-                        "2": {
-                            "name": "entity.name.function.macro.rust"
-                        },
-                        "3": {
-                            "name": "entity.name.type.macro.rust"
                         }
                     }
                 }
