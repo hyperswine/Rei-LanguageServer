@@ -11,16 +11,16 @@
             "begin": "(<)(\\[)",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.brackets.angle.rust"
+                    "name": "punctuation.brackets.angle.rei"
                 },
                 "2": {
-                    "name": "punctuation.brackets.square.rust"
+                    "name": "punctuation.brackets.square.rei"
                 }
             },
             "end": ">",
             "endCaptures": {
                 "0": {
-                    "name": "punctuation.brackets.angle.rust"
+                    "name": "punctuation.brackets.angle.rei"
                 }
             },
             "patterns": [
@@ -37,9 +37,6 @@
                     "include": "#lvariables"
                 },
                 {
-                    "include": "#lifetimes"
-                },
-                {
                     "include": "#punctuation"
                 },
                 {
@@ -49,23 +46,23 @@
         },
         {
             "comment": "attributes",
-            "name": "meta.attribute.rust",
+            "name": "meta.attribute.rei",
             "begin": "(#)(\\!?)(\\[)",
             "beginCaptures": {
                 "1": {
-                    "name": "punctuation.definition.attribute.rust"
+                    "name": "punctuation.definition.attribute.rei"
                 },
                 "2": {
-                    "name": "keyword.operator.attribute.inner.rust"
+                    "name": "keyword.operator.attribute.inner.rei"
                 },
                 "3": {
-                    "name": "punctuation.brackets.attribute.rust"
+                    "name": "punctuation.brackets.attribute.rei"
                 }
             },
             "end": "\\]",
             "endCaptures": {
                 "0": {
-                    "name": "punctuation.brackets.attribute.rust"
+                    "name": "punctuation.brackets.attribute.rei"
                 }
             },
             "patterns": [
@@ -77,9 +74,6 @@
                 },
                 {
                     "include": "#keywords"
-                },
-                {
-                    "include": "#lifetimes"
                 },
                 {
                     "include": "#punctuation"
@@ -100,29 +94,29 @@
             "match": "(mod)\\s+((?:r#(?!crate|[Ss]elf|super))?[a-z][A-Za-z0-9_]*)",
             "captures": {
                 "1": {
-                    "name": "storage.type.rust"
+                    "name": "storage.type.rei"
                 },
                 "2": {
-                    "name": "entity.name.module.rust"
+                    "name": "entity.name.module.rei"
                 }
             }
         },
         {
             "comment": "external crate imports",
-            "name": "meta.import.rust",
+            "name": "meta.import.rei",
             "begin": "\\b(extern)\\s+(crate)",
             "beginCaptures": {
                 "1": {
-                    "name": "storage.type.rust"
+                    "name": "storage.type.rei"
                 },
                 "2": {
-                    "name": "keyword.other.crate.rust"
+                    "name": "keyword.other.crate.rei"
                 }
             },
             "end": ";",
             "endCaptures": {
                 "0": {
-                    "name": "punctuation.semi.rust"
+                    "name": "punctuation.semi.rei"
                 }
             },
             "patterns": [
@@ -142,17 +136,17 @@
         },
         {
             "comment": "use statements",
-            "name": "meta.use.rust",
+            "name": "meta.use.rei",
             "begin": "\\b(use)\\s",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.rust"
+                    "name": "keyword.other.rei"
                 }
             },
             "end": ";",
             "endCaptures": {
                 "0": {
-                    "name": "punctuation.semi.rust"
+                    "name": "punctuation.semi.rei"
                 }
             },
             "patterns": [
@@ -204,9 +198,6 @@
             "include": "#keywords"
         },
         {
-            "include": "#lifetimes"
-        },
-        {
             "include": "#namespaces"
         },
         {
@@ -224,12 +215,12 @@
             "patterns": [
                 {
                     "comment": "documentation comments",
-                    "name": "comment.line.documentation.rust",
+                    "name": "comment.line.documentation.rei",
                     "match": "^\\s*///.*"
                 },
                 {
                     "comment": "line comments",
-                    "name": "comment.line.double-slash.rust",
+                    "name": "comment.line.double-slash.rei",
                     "match": "\\s*//.*"
                 }
             ]
@@ -238,12 +229,12 @@
             "patterns": [
                 {
                     "comment": "empty block comments",
-                    "name": "comment.block.rust",
+                    "name": "comment.block.rei",
                     "match": "/\\*\\*/"
                 },
                 {
                     "comment": "block documentation comments",
-                    "name": "comment.block.documentation.rust",
+                    "name": "comment.block.documentation.rei",
                     "begin": "/\\*\\*",
                     "end": "\\*/",
                     "patterns": [
@@ -254,7 +245,7 @@
                 },
                 {
                     "comment": "block comments",
-                    "name": "comment.block.rust",
+                    "name": "comment.block.rei",
                     "begin": "/\\*(?!\\*)",
                     "end": "\\*/",
                     "patterns": [
@@ -269,7 +260,7 @@
             "patterns": [
                 {
                     "comment": "ALL CAPS constants",
-                    "name": "constant.other.caps.rust",
+                    "name": "constant.other.caps.rei",
                     "match": "\\b[A-Z]{2}[A-Z0-9_]*\\b"
                 },
                 {
@@ -277,91 +268,91 @@
                     "match": "\\b(const)\\s+([A-Z][A-Za-z0-9_]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "storage.type.rust"
+                            "name": "storage.type.rei"
                         },
                         "2": {
-                            "name": "constant.other.caps.rust"
+                            "name": "constant.other.caps.rei"
                         }
                     }
                 },
                 {
                     "comment": "decimal integers and floats",
-                    "name": "constant.numeric.decimal.rust",
+                    "name": "constant.numeric.decimal.rei",
                     "match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(E)([+-])([\\d_]+))?(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
                     "captures": {
                         "1": {
-                            "name": "punctuation.separator.dot.decimal.rust"
+                            "name": "punctuation.separator.dot.decimal.rei"
                         },
                         "2": {
-                            "name": "keyword.operator.exponent.rust"
+                            "name": "keyword.operator.exponent.rei"
                         },
                         "3": {
-                            "name": "keyword.operator.exponent.sign.rust"
+                            "name": "keyword.operator.exponent.sign.rei"
                         },
                         "4": {
-                            "name": "constant.numeric.decimal.exponent.mantissa.rust"
+                            "name": "constant.numeric.decimal.exponent.mantissa.rei"
                         },
                         "5": {
-                            "name": "entity.name.type.numeric.rust"
+                            "name": "entity.name.type.numeric.rei"
                         }
                     }
                 },
                 {
                     "comment": "hexadecimal integers",
-                    "name": "constant.numeric.hex.rust",
+                    "name": "constant.numeric.hex.rei",
                     "match": "\\b0x[\\da-fA-F_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
                     "captures": {
                         "1": {
-                            "name": "entity.name.type.numeric.rust"
+                            "name": "entity.name.type.numeric.rei"
                         }
                     }
                 },
                 {
                     "comment": "octal integers",
-                    "name": "constant.numeric.oct.rust",
+                    "name": "constant.numeric.oct.rei",
                     "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
                     "captures": {
                         "1": {
-                            "name": "entity.name.type.numeric.rust"
+                            "name": "entity.name.type.numeric.rei"
                         }
                     }
                 },
                 {
                     "comment": "binary integers",
-                    "name": "constant.numeric.bin.rust",
+                    "name": "constant.numeric.bin.rei",
                     "match": "\\b0b[01_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
                     "captures": {
                         "1": {
-                            "name": "entity.name.type.numeric.rust"
+                            "name": "entity.name.type.numeric.rei"
                         }
                     }
                 },
                 {
                     "comment": "booleans",
-                    "name": "constant.language.bool.rust",
+                    "name": "constant.language.bool.rei",
                     "match": "\\b(true|false)\\b"
                 }
             ]
         },
         "escapes": {
             "comment": "escapes: ASCII, byte, Unicode, quote, regex",
-            "name": "constant.character.escape.rust",
+            "name": "constant.character.escape.rei",
             "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
             "captures": {
                 "1": {
-                    "name": "constant.character.escape.backslash.rust"
+                    "name": "constant.character.escape.backslash.rei"
                 },
                 "2": {
-                    "name": "constant.character.escape.bit.rust"
+                    "name": "constant.character.escape.bit.rei"
                 },
                 "3": {
-                    "name": "constant.character.escape.unicode.rust"
+                    "name": "constant.character.escape.unicode.rei"
                 },
                 "4": {
-                    "name": "constant.character.escape.unicode.punctuation.rust"
+                    "name": "constant.character.escape.unicode.punctuation.rei"
                 },
                 "5": {
-                    "name": "constant.character.escape.unicode.punctuation.rust"
+                    "name": "constant.character.escape.unicode.punctuation.rei"
                 }
             }
         },
@@ -372,35 +363,35 @@
                     "match": "\\b(pub)(\\()",
                     "captures": {
                         "1": {
-                            "name": "keyword.other.rust"
+                            "name": "keyword.other.rei"
                         },
                         "2": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         }
                     }
                 },
                 {
                     "comment": "function definition",
-                    "name": "meta.function.definition.rust",
+                    "name": "meta.function.definition.rei",
                     "begin": "\\b(fn)\\s+((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)((\\()|(<))",
                     "beginCaptures": {
                         "1": {
-                            "name": "keyword.other.fn.rust"
+                            "name": "keyword.other.fn.rei"
                         },
                         "2": {
-                            "name": "entity.name.function.rust"
+                            "name": "entity.name.function.rei"
                         },
                         "4": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         },
                         "5": {
-                            "name": "punctuation.brackets.angle.rust"
+                            "name": "punctuation.brackets.angle.rei"
                         }
                     },
                     "end": "\\{|;",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.brackets.curly.rust"
+                            "name": "punctuation.brackets.curly.rei"
                         }
                     },
                     "patterns": [
@@ -424,9 +415,6 @@
                         },
                         {
                             "include": "#functions"
-                        },
-                        {
-                            "include": "#lifetimes"
                         },
                         {
                             "include": "#namespaces"
@@ -447,20 +435,20 @@
                 },
                 {
                     "comment": "function/method calls, chaining",
-                    "name": "meta.function.call.rust",
+                    "name": "meta.function.call.rei",
                     "begin": "((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)(\\()",
                     "beginCaptures": {
                         "1": {
-                            "name": "entity.name.function.rust"
+                            "name": "entity.name.function.rei"
                         },
                         "2": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         }
                     },
                     "end": "\\)",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         }
                     },
                     "patterns": [
@@ -484,9 +472,6 @@
                         },
                         {
                             "include": "#functions"
-                        },
-                        {
-                            "include": "#lifetimes"
                         },
                         {
                             "include": "#namespaces"
@@ -507,17 +492,17 @@
                 },
                 {
                     "comment": "function/method calls with turbofish",
-                    "name": "meta.function.call.rust",
+                    "name": "meta.function.call.rei",
                     "begin": "((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)(?=::<.*>\\()",
                     "beginCaptures": {
                         "1": {
-                            "name": "entity.name.function.rust"
+                            "name": "entity.name.function.rei"
                         }
                     },
                     "end": "\\)",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         }
                     },
                     "patterns": [
@@ -541,9 +526,6 @@
                         },
                         {
                             "include": "#functions"
-                        },
-                        {
-                            "include": "#lifetimes"
                         },
                         {
                             "include": "#namespaces"
@@ -568,92 +550,97 @@
             "patterns": [
                 {
                     "comment": "control flow keywords",
-                    "name": "keyword.control.rust",
-                    "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|try|while|yield)\\b"
+                    "name": "keyword.control.rei",
+                    "match": "\\b(await|break|continue|do|else|elif|for|if|loop|match|return|while|yield)\\b"
                 },
                 {
                     "comment": "storage keywords",
-                    "name": "keyword.other.rust storage.type.rust",
+                    "name": "keyword.other.rei storage.type.rei",
                     "match": "\\b(extern|let|mod)\\b"
                 },
                 {
                     "comment": "const keyword",
-                    "name": "storage.modifier.rust",
+                    "name": "storage.modifier.rei",
                     "match": "\\b(const)\\b"
                 },
                 {
                     "comment": "type keyword",
-                    "name": "keyword.declaration.type.rust storage.type.rust",
+                    "name": "keyword.declaration.type.rei storage.type.rei",
                     "match": "\\b(type)\\b"
                 },
                 {
                     "comment": "enum keyword",
-                    "name": "keyword.declaration.enum.rust storage.type.rust",
+                    "name": "keyword.declaration.enum.rei storage.type.rei",
                     "match": "\\b(enum)\\b"
                 },
                 {
                     "comment": "trait keyword",
-                    "name": "keyword.declaration.trait.rust storage.type.rust",
+                    "name": "keyword.declaration.trait.rei storage.type.rei",
                     "match": "\\b(trait)\\b"
                 },
                 {
-                    "comment": "struct keyword",
-                    "name": "keyword.declaration.struct.rust storage.type.rust",
-                    "match": "\\b(struct)\\b"
+                    "comment": "data keyword",
+                    "name": "keyword.declaration.data.rei storage.type.rei",
+                    "match": "\\b(data)\\b"
+                },
+                {
+                    "comment": "class keyword",
+                    "name": "keyword.declaration.class.rei storage.type.rei",
+                    "match": "\\b(class)\\b"
                 },
                 {
                     "comment": "storage modifiers",
-                    "name": "storage.modifier.rust",
+                    "name": "storage.modifier.rei",
                     "match": "\\b(abstract|static)\\b"
                 },
                 {
                     "comment": "other keywords",
-                    "name": "keyword.other.rust",
-                    "match": "\\b(as|async|become|box|dyn|move|final|impl|in|override|priv|pub|ref|typeof|union|unsafe|unsized|use|virtual|where)\\b"
+                    "name": "keyword.other.rei",
+                    "match": "\\b(as|async|new|impl|in|internal|pub|ref|unsafe|use|where)\\b"
                 },
                 {
                     "comment": "fn",
-                    "name": "keyword.other.fn.rust",
+                    "name": "keyword.other.fn.rei",
                     "match": "\\bfn\\b"
                 },
                 {
                     "comment": "crate",
-                    "name": "keyword.other.crate.rust",
+                    "name": "keyword.other.crate.rei",
                     "match": "\\bcrate\\b"
                 },
                 {
                     "comment": "mut",
-                    "name": "storage.modifier.mut.rust",
+                    "name": "storage.modifier.mut.rei",
                     "match": "\\bmut\\b"
                 },
                 {
                     "comment": "logical operators",
-                    "name": "keyword.operator.logical.rust",
+                    "name": "keyword.operator.logical.rei",
                     "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
                 },
                 {
                     "comment": "logical AND, borrow references",
-                    "name": "keyword.operator.borrow.and.rust",
+                    "name": "keyword.operator.borrow.and.rei",
                     "match": "&(?![&=])"
                 },
                 {
                     "comment": "assignment operators",
-                    "name": "keyword.operator.assignment.rust",
+                    "name": "keyword.operator.assignment.rei",
                     "match": "(\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=|<<=|>>=)"
                 },
                 {
                     "comment": "single equal",
-                    "name": "keyword.operator.assignment.equal.rust",
+                    "name": "keyword.operator.assignment.equal.rei",
                     "match": "(?<![<>])=(?!=|>)"
                 },
                 {
                     "comment": "comparison operators",
-                    "name": "keyword.operator.comparison.rust",
+                    "name": "keyword.operator.comparison.rei",
                     "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
                 },
                 {
                     "comment": "math operators",
-                    "name": "keyword.operator.math.rust",
+                    "name": "keyword.operator.math.rei",
                     "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
                 },
                 {
@@ -661,31 +648,31 @@
                     "match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
                     "captures": {
                         "1": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         },
                         "2": {
-                            "name": "punctuation.brackets.square.rust"
+                            "name": "punctuation.brackets.square.rei"
                         },
                         "3": {
-                            "name": "punctuation.brackets.curly.rust"
+                            "name": "punctuation.brackets.curly.rei"
                         },
                         "4": {
-                            "name": "keyword.operator.comparison.rust"
+                            "name": "keyword.operator.comparison.rei"
                         },
                         "5": {
-                            "name": "punctuation.brackets.round.rust"
+                            "name": "punctuation.brackets.round.rei"
                         },
                         "6": {
-                            "name": "punctuation.brackets.square.rust"
+                            "name": "punctuation.brackets.square.rei"
                         },
                         "7": {
-                            "name": "punctuation.brackets.curly.rust"
+                            "name": "punctuation.brackets.curly.rei"
                         }
                     }
                 },
                 {
                     "comment": "namespace operator",
-                    "name": "keyword.operator.namespace.rust",
+                    "name": "keyword.operator.namespace.rei",
                     "match": "::"
                 },
                 {
@@ -693,85 +680,54 @@
                     "match": "(\\*)(?=\\w+)",
                     "captures": {
                         "1": {
-                            "name": "keyword.operator.dereference.rust"
+                            "name": "keyword.operator.dereference.rei"
                         }
                     }
                 },
                 {
                     "comment": "subpattern binding",
-                    "name": "keyword.operator.subpattern.rust",
+                    "name": "keyword.operator.subpattern.rei",
                     "match": "@"
                 },
                 {
                     "comment": "dot access",
-                    "name": "keyword.operator.access.dot.rust",
+                    "name": "keyword.operator.access.dot.rei",
                     "match": "\\.(?!\\.)"
                 },
                 {
                     "comment": "ranges, range patterns",
-                    "name": "keyword.operator.range.rust",
+                    "name": "keyword.operator.range.rei",
                     "match": "\\.{2}(=|\\.)?"
                 },
                 {
                     "comment": "colon",
-                    "name": "keyword.operator.key-value.rust",
+                    "name": "keyword.operator.key-value.rei",
                     "match": ":(?!:)"
                 },
                 {
                     "comment": "dashrocket, skinny arrow",
-                    "name": "keyword.operator.arrow.skinny.rust",
+                    "name": "keyword.operator.arrow.skinny.rei",
                     "match": "->"
                 },
                 {
                     "comment": "hashrocket, fat arrow",
-                    "name": "keyword.operator.arrow.fat.rust",
+                    "name": "keyword.operator.arrow.fat.rei",
                     "match": "=>"
                 }
             ]
         },
         "interpolations": {
             "comment": "curly brace interpolations",
-            "name": "meta.interpolation.rust",
+            "name": "meta.interpolation.rei",
             "match": "({)[^\"{}]*(})",
             "captures": {
                 "1": {
-                    "name": "punctuation.definition.interpolation.rust"
+                    "name": "punctuation.definition.interpolation.rei"
                 },
                 "2": {
-                    "name": "punctuation.definition.interpolation.rust"
+                    "name": "punctuation.definition.interpolation.rei"
                 }
             }
-        },
-        "lifetimes": {
-            "patterns": [
-                {
-                    "comment": "named lifetime parameters",
-                    "match": "(['])([a-zA-Z_][0-9a-zA-Z_]*)(?!['])\\b",
-                    "captures": {
-                        "1": {
-                            "name": "punctuation.definition.lifetime.rust"
-                        },
-                        "2": {
-                            "name": "entity.name.type.lifetime.rust"
-                        }
-                    }
-                },
-                {
-                    "comment": "borrowing references to named lifetimes",
-                    "match": "(\\&)(['])([a-zA-Z_][0-9a-zA-Z_]*)(?!['])\\b",
-                    "captures": {
-                        "1": {
-                            "name": "keyword.operator.borrow.rust"
-                        },
-                        "2": {
-                            "name": "punctuation.definition.lifetime.rust"
-                        },
-                        "3": {
-                            "name": "entity.name.type.lifetime.rust"
-                        }
-                    }
-                }
-            ]
         },
         "namespaces": {
             "patterns": [
@@ -780,10 +736,10 @@
                     "match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!super|self)::)",
                     "captures": {
                         "1": {
-                            "name": "entity.name.namespace.rust"
+                            "name": "entity.name.namespace.rei"
                         },
                         "2": {
-                            "name": "keyword.operator.namespace.rust"
+                            "name": "keyword.operator.namespace.rei"
                         }
                     }
                 }
@@ -796,7 +752,7 @@
                     "match": "(?<![A-Za-z])(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
                     "captures": {
                         "1": {
-                            "name": "entity.name.type.numeric.rust"
+                            "name": "entity.name.type.numeric.rei"
                         }
                     }
                 },
@@ -805,16 +761,16 @@
                     "begin": "\\b([A-Z][A-Za-z0-9]*)(<)",
                     "beginCaptures": {
                         "1": {
-                            "name": "entity.name.type.rust"
+                            "name": "entity.name.type.rei"
                         },
                         "2": {
-                            "name": "punctuation.brackets.angle.rust"
+                            "name": "punctuation.brackets.angle.rei"
                         }
                     },
                     "end": ">",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.brackets.angle.rust"
+                            "name": "punctuation.brackets.angle.rei"
                         }
                     },
                     "patterns": [
@@ -831,9 +787,6 @@
                             "include": "#lvariables"
                         },
                         {
-                            "include": "#lifetimes"
-                        },
-                        {
                             "include": "#punctuation"
                         },
                         {
@@ -846,7 +799,7 @@
                 },
                 {
                     "comment": "primitive types",
-                    "name": "entity.name.type.primitive.rust",
+                    "name": "entity.name.type.primitive.rei",
                     "match": "\\b(bool|char|str)\\b"
                 },
                 {
@@ -854,22 +807,34 @@
                     "match": "\\b(trait)\\s+([A-Z][A-Za-z0-9]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "keyword.declaration.trait.rust storage.type.rust"
+                            "name": "keyword.declaration.trait.rei storage.type.rei"
                         },
                         "2": {
-                            "name": "entity.name.type.trait.rust"
+                            "name": "entity.name.type.trait.rei"
                         }
                     }
                 },
                 {
-                    "comment": "struct declarations",
-                    "match": "\\b(struct)\\s+([A-Z][A-Za-z0-9]*)\\b",
+                    "comment": "data declarations",
+                    "match": "\\b(data)\\s+([A-Z][A-Za-z0-9]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "keyword.declaration.struct.rust storage.type.rust"
+                            "name": "keyword.declaration.data.rei storage.type.rei"
                         },
                         "2": {
-                            "name": "entity.name.type.struct.rust"
+                            "name": "entity.name.type.data.rei"
+                        }
+                    }
+                },
+                {
+                    "comment": "class declarations",
+                    "match": "\\b(class)\\s+([A-Z][A-Za-z0-9]*)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.class.rei storage.type.rei"
+                        },
+                        "2": {
+                            "name": "entity.name.type.class.rei"
                         }
                     }
                 },
@@ -878,10 +843,10 @@
                     "match": "\\b(enum)\\s+([A-Z][A-Za-z0-9_]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "keyword.declaration.enum.rust storage.type.rust"
+                            "name": "keyword.declaration.enum.rei storage.type.rei"
                         },
                         "2": {
-                            "name": "entity.name.type.enum.rust"
+                            "name": "entity.name.type.enum.rei"
                         }
                     }
                 },
@@ -890,16 +855,16 @@
                     "match": "\\b(type)\\s+([A-Z][A-Za-z0-9_]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "keyword.declaration.type.rust storage.type.rust"
+                            "name": "keyword.declaration.type.rei storage.type.rei"
                         },
                         "2": {
-                            "name": "entity.name.type.declaration.rust"
+                            "name": "entity.name.type.declaration.rei"
                         }
                     }
                 },
                 {
                     "comment": "types",
-                    "name": "entity.name.type.rust",
+                    "name": "entity.name.type.rei",
                     "match": "\\b[A-Z][A-Za-z0-9]*\\b(?!!)"
                 }
             ]
@@ -908,12 +873,12 @@
             "patterns": [
                 {
                     "comment": "option types",
-                    "name": "entity.name.type.option.rust",
+                    "name": "entity.name.type.option.rei",
                     "match": "\\b(Some|None)\\b"
                 },
                 {
                     "comment": "result types",
-                    "name": "entity.name.type.result.rust",
+                    "name": "entity.name.type.result.rei",
                     "match": "\\b(Ok|Err)\\b"
                 }
             ]
@@ -922,32 +887,32 @@
             "patterns": [
                 {
                     "comment": "comma",
-                    "name": "punctuation.comma.rust",
+                    "name": "punctuation.comma.rei",
                     "match": ","
                 },
                 {
                     "comment": "curly braces",
-                    "name": "punctuation.brackets.curly.rust",
+                    "name": "punctuation.brackets.curly.rei",
                     "match": "[{}]"
                 },
                 {
                     "comment": "parentheses, round brackets",
-                    "name": "punctuation.brackets.round.rust",
+                    "name": "punctuation.brackets.round.rei",
                     "match": "[()]"
                 },
                 {
                     "comment": "semicolon",
-                    "name": "punctuation.semi.rust",
+                    "name": "punctuation.semi.rei",
                     "match": ";"
                 },
                 {
                     "comment": "square brackets",
-                    "name": "punctuation.brackets.square.rust",
+                    "name": "punctuation.brackets.square.rei",
                     "match": "[\\[\\]]"
                 },
                 {
                     "comment": "angle brackets",
-                    "name": "punctuation.brackets.angle.rust",
+                    "name": "punctuation.brackets.angle.rei",
                     "match": "(?<!=)[<>]"
                 }
             ]
@@ -956,20 +921,20 @@
             "patterns": [
                 {
                     "comment": "double-quoted strings and byte strings",
-                    "name": "string.quoted.double.rust",
+                    "name": "string.quoted.double.rei",
                     "begin": "(b?)(\")",
                     "beginCaptures": {
                         "1": {
-                            "name": "string.quoted.byte.raw.rust"
+                            "name": "string.quoted.byte.raw.rei"
                         },
                         "2": {
-                            "name": "punctuation.definition.string.rust"
+                            "name": "punctuation.definition.string.rei"
                         }
                     },
                     "end": "\"",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.definition.string.rust"
+                            "name": "punctuation.definition.string.rei"
                         }
                     },
                     "patterns": [
@@ -983,45 +948,45 @@
                 },
                 {
                     "comment": "double-quoted raw strings and raw byte strings",
-                    "name": "string.quoted.double.rust",
+                    "name": "string.quoted.double.rei",
                     "begin": "(b?r)(#*)(\")",
                     "beginCaptures": {
                         "1": {
-                            "name": "string.quoted.byte.raw.rust"
+                            "name": "string.quoted.byte.raw.rei"
                         },
                         "2": {
-                            "name": "punctuation.definition.string.raw.rust"
+                            "name": "punctuation.definition.string.raw.rei"
                         },
                         "3": {
-                            "name": "punctuation.definition.string.rust"
+                            "name": "punctuation.definition.string.rei"
                         }
                     },
                     "end": "(\")(\\2)",
                     "endCaptures": {
                         "1": {
-                            "name": "punctuation.definition.string.rust"
+                            "name": "punctuation.definition.string.rei"
                         },
                         "2": {
-                            "name": "punctuation.definition.string.raw.rust"
+                            "name": "punctuation.definition.string.raw.rei"
                         }
                     }
                 },
                 {
                     "comment": "characters and bytes",
-                    "name": "string.quoted.single.char.rust",
+                    "name": "string.quoted.single.char.rei",
                     "begin": "(b)?(')",
                     "beginCaptures": {
                         "1": {
-                            "name": "string.quoted.byte.raw.rust"
+                            "name": "string.quoted.byte.raw.rei"
                         },
                         "2": {
-                            "name": "punctuation.definition.char.rust"
+                            "name": "punctuation.definition.char.rei"
                         }
                     },
                     "end": "'",
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.definition.char.rust"
+                            "name": "punctuation.definition.char.rei"
                         }
                     },
                     "patterns": [
@@ -1036,12 +1001,12 @@
             "patterns": [
                 {
                     "comment": "self",
-                    "name": "variable.language.self.rust",
+                    "name": "variable.language.self.rei",
                     "match": "\\b[Ss]elf\\b"
                 },
                 {
                     "comment": "super",
-                    "name": "variable.language.super.rust",
+                    "name": "variable.language.super.rei",
                     "match": "\\bsuper\\b"
                 }
             ]
@@ -1050,7 +1015,7 @@
             "patterns": [
                 {
                     "comment": "variables",
-                    "name": "variable.other.rust",
+                    "name": "variable.other.rei",
                     "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(crate|[Ss]elf|super)))?[a-z0-9_]+\\b"
                 }
             ]
