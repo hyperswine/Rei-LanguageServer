@@ -29,6 +29,13 @@
                 "scopeName": "source.rei",
                 "path": "./syntaxes/rei.tmLanguage.json"
             }
+        ],
+        "iconThemes": [
+            {
+              "id": "reiicon",
+              "label": "Rei Icons",
+              "path": "./icons/icons.json"
+            }
         ]
     },
     "devDependencies": {
