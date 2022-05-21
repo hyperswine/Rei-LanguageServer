@@ -2,54 +2,14 @@
 
 An open source language server extension for VSCode.
 
+RN I just copied rust syntax highlighter enhanced from [here](https://github.com/dustypomerleau/rust-syntax/blob/master/syntaxes/rust.tmLanguage.json).
+
 ## Features
 
-- Syntax Highlighting
+- Syntax Highlighting (really only this rn)
 - Printing vars and statements that have a definite result, would be introduced in `rein` too
 - Automatic type inference and labelling when you dont specify a type
 
 ## Requirements
 
-No dependencies. Will have some once `reic` works well.
-
-## Extension Settings
-
-No settings yet.
-
-## Known Issues
-
-No issues so far.
-
-## Release Notes
-
-### 1.0.0
-
-Initial release of the Rei Language Server.
-
-## Stuff
-
-- need to define (expr) so to be able to use it in $deref
-- add constants
-- prob need an actual grammar to do this properly
-
-```
-"entities": {
-   "patterns": [
-    {
-     "name": "entity.name.type.rei",
-     "match": "\\b(class|trait|object).*\\b"
-    },
-
-
-        {
-     "name": "constant.character.escape.rei-prob-wrong",
-     "match": "\\b\\"
-    }
-
-                ,
-    
-    {
-     "name": "keyword.annotations.rei",
-     "match": "@.*"
-    },
-```
+No dependencies. Will have some once `reic` and `rlsp` works well.
