@@ -113,7 +113,7 @@
                     "name": "keyword.other.crate.rei"
                 }
             },
-            "end": ";",
+            "end": "[ \t\n]",
             "endCaptures": {
                 "0": {
                     "name": "punctuation.semi.rei"
@@ -143,7 +143,7 @@
                     "name": "keyword.other.rei"
                 }
             },
-            "end": ";",
+            "end": "[ \t\n]",
             "endCaptures": {
                 "0": {
                     "name": "punctuation.semi.rei"
@@ -388,7 +388,7 @@
                             "name": "punctuation.brackets.angle.rei"
                         }
                     },
-                    "end": "\\{|;",
+                    "end": "\\{",
                     "endCaptures": {
                         "0": {
                             "name": "punctuation.brackets.curly.rei"
@@ -901,9 +901,9 @@
                     "match": "[()]"
                 },
                 {
-                    "comment": "semicolon",
-                    "name": "punctuation.semi.rei",
-                    "match": ";"
+                    "comment": "whitespace",
+                    "name": "punctuation.ws.rei",
+                    "match": "[ \n\t]"
                 },
                 {
                     "comment": "square brackets",

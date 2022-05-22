@@ -13,3 +13,19 @@ RN I just copied rust syntax highlighter enhanced from [here](https://github.com
 ## Requirements
 
 No dependencies. Will have some once `reic` and `rlsp` works well.
+
+## Icons
+
+Just put this in:
+
+```json
+"iconThemes": [
+            {
+              "id": "reiicon",
+              "label": "Rei Icons",
+              "path": "./icons/icons.json"
+            }
+]
+```
+
+Or use vscode icons custom icons.
