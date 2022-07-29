@@ -36,5 +36,6 @@
     },
     "repository": {
         "url": "https://github.com/hyperswine/Rei-LSP"
-    }
+    },
+    "publisher": "REILANGUAGE"
 }
