@@ -102,9 +102,9 @@
             }
         },
         {
-            "comment": "external crate imports",
+            "comment": "external import",
             "name": "meta.import.rei",
-            "begin": "\\b(extern)\\s+(crate)",
+            "begin": "\\b(extern)",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.rei"
@@ -135,9 +135,9 @@
             ]
         },
         {
-            "comment": "use statements",
+            "comment": "import statements",
             "name": "meta.use.rei",
-            "begin": "\\b(use)\\s",
+            "begin": "\\b(import)\\s",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.other.rei"
@@ -214,14 +214,14 @@
         "comments": {
             "patterns": [
                 {
-                    "comment": "documentation comments",
-                    "name": "comment.line.documentation.rei",
-                    "match": "^\\s*///.*"
-                },
-                {
                     "comment": "line comments",
                     "name": "comment.line.double-slash.rei",
-                    "match": "\\s*//.*"
+                    "match": "//.*"
+                },
+                {
+                    "comment": "doc comments",
+                    "name": "comment.line.number-sign.rei",
+                    "match": "#.*"
                 }
             ]
         },
@@ -235,24 +235,8 @@
                 {
                     "comment": "block documentation comments",
                     "name": "comment.block.documentation.rei",
-                    "begin": "/\\*\\*",
-                    "end": "\\*/",
-                    "patterns": [
-                        {
-                            "include": "#block-comments"
-                        }
-                    ]
-                },
-                {
-                    "comment": "block comments",
-                    "name": "comment.block.rei",
-                    "begin": "/\\*(?!\\*)",
-                    "end": "\\*/",
-                    "patterns": [
-                        {
-                            "include": "#block-comments"
-                        }
-                    ]
+                    "begin": "#\\*",
+                    "end": "\\*#"
                 }
             ]
         },
@@ -358,18 +342,6 @@
         },
         "functions": {
             "patterns": [
-                {
-                    "comment": "pub as a function",
-                    "match": "\\b(pub)(\\()",
-                    "captures": {
-                        "1": {
-                            "name": "keyword.other.rei"
-                        },
-                        "2": {
-                            "name": "punctuation.brackets.round.rei"
-                        }
-                    }
-                },
                 {
                     "comment": "function definition",
                     "name": "meta.function.definition.rei",
@@ -551,17 +523,12 @@
                 {
                     "comment": "control flow keywords",
                     "name": "keyword.control.rei",
-                    "match": "\\b(await|break|continue|do|else|elif|for|if|loop|match|return|while|yield)\\b"
-                },
-                {
-                    "comment": "storage keywords",
-                    "name": "keyword.other.rei storage.type.rei",
-                    "match": "\\b(extern|let|mod)\\b"
+                    "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield)\\b"
                 },
                 {
                     "comment": "const keyword",
                     "name": "storage.modifier.rei",
-                    "match": "\\b(const)\\b"
+                    "match": "\\b(const|extern|let|mut|mod)\\b"
                 },
                 {
                     "comment": "type keyword",
@@ -589,14 +556,9 @@
                     "match": "\\b(class)\\b"
                 },
                 {
-                    "comment": "storage modifiers",
-                    "name": "storage.modifier.rei",
-                    "match": "\\b(abstract|static)\\b"
-                },
-                {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(as|async|new|impl|in|internal|pub|ref|unsafe|use|where)\\b"
+                    "match": "\\b(as|async|new|impl|in|internal|export|import|ref|unsafe|use|where)\\b"
                 },
                 {
                     "comment": "fn",
@@ -607,11 +569,6 @@
                     "comment": "crate",
                     "name": "keyword.other.crate.rei",
                     "match": "\\bcrate\\b"
-                },
-                {
-                    "comment": "mut",
-                    "name": "storage.modifier.mut.rei",
-                    "match": "\\bmut\\b"
                 },
                 {
                     "comment": "logical operators",
