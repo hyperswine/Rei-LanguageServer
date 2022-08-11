@@ -91,7 +91,7 @@
         },
         {
             "comment": "modules",
-            "match": "(mod)\\s+((?:r#(?!crate|[Ss]elf|super))?[a-z][A-Za-z0-9_]*)",
+            "match": "(mod)\\s+((?:r#(?!outer|[Ss]elf|pkg))?[a-z][A-Za-z0-9_]*)",
             "captures": {
                 "1": {
                     "name": "storage.type.rei"
@@ -110,7 +110,7 @@
                     "name": "storage.type.rei"
                 },
                 "2": {
-                    "name": "keyword.other.crate.rei"
+                    "name": "keyword.other.pkg.rei"
                 }
             },
             "end": "[ \t\n]",
@@ -228,9 +228,10 @@
         "block-comments": {
             "patterns": [
                 {
-                    "comment": "empty block comments",
+                    "comment": "general block comments",
                     "name": "comment.block.rei",
-                    "match": "/\\*\\*/"
+                    "begin": "/\\*",
+                    "end": "\\*/"
                 },
                 {
                     "comment": "block documentation comments",
@@ -345,7 +346,7 @@
                 {
                     "comment": "function definition",
                     "name": "meta.function.definition.rei",
-                    "begin": "\\b(fn)\\s+((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)((\\()|(<))",
+                    "begin": "\\b(fn)\\s+((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)((\\()|(<))",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.other.fn.rei"
@@ -408,7 +409,7 @@
                 {
                     "comment": "function/method calls, chaining",
                     "name": "meta.function.call.rei",
-                    "begin": "((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)(\\()",
+                    "begin": "((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(\\()",
                     "beginCaptures": {
                         "1": {
                             "name": "entity.name.function.rei"
@@ -465,7 +466,7 @@
                 {
                     "comment": "function/method calls with turbofish",
                     "name": "meta.function.call.rei",
-                    "begin": "((?:r#(?!crate|[Ss]elf|super))?[A-Za-z0-9_]+)(?=::<.*>\\()",
+                    "begin": "((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(?=::<.*>\\()",
                     "beginCaptures": {
                         "1": {
                             "name": "entity.name.function.rei"
@@ -558,17 +559,12 @@
                 {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(as|async|new|impl|in|internal|export|reexport|import|ref|unsafe|use|where)\\b"
+                    "match": "\\b(as|async|new|impl|in|internal|export|reexport|import|ref|unsafe|use|where|or|and|is)\\b"
                 },
                 {
                     "comment": "fn",
                     "name": "keyword.other.fn.rei",
                     "match": "\\bfn\\b"
-                },
-                {
-                    "comment": "crate",
-                    "name": "keyword.other.crate.rei",
-                    "match": "\\bcrate\\b"
                 },
                 {
                     "comment": "logical operators",
@@ -690,7 +686,7 @@
             "patterns": [
                 {
                     "comment": "namespace (non-type, non-function path segment)",
-                    "match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!super|self)::)",
+                    "match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!outer|pkg|self)::)",
                     "captures": {
                         "1": {
                             "name": "entity.name.namespace.rei"
@@ -706,7 +702,7 @@
             "patterns": [
                 {
                     "comment": "numeric types",
-                    "match": "(?<![A-Za-z])(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
+                    "match": "(?<![A-Za-z])(f16|f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
                     "captures": {
                         "1": {
                             "name": "entity.name.type.numeric.rei"
@@ -965,6 +961,11 @@
                     "comment": "super",
                     "name": "variable.language.super.rei",
                     "match": "\\bsuper\\b"
+                },
+                {
+                    "comment": "pkg",
+                    "name": "variable.language.pkg.rei",
+                    "match": "\\bpkg\\b"
                 }
             ]
         },
@@ -973,7 +974,7 @@
                 {
                     "comment": "variables",
                     "name": "variable.other.rei",
-                    "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(crate|[Ss]elf|super)))?[a-z0-9_]+\\b"
+                    "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(outer|[Ss]elf|pkg)))?[a-z0-9_]+\\b"
                 }
             ]
         }
