@@ -558,7 +558,7 @@
                 {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(as|async|new|impl|in|internal|export|import|ref|unsafe|use|where)\\b"
+                    "match": "\\b(as|async|new|impl|in|internal|export|reexport|import|ref|unsafe|use|where)\\b"
                 },
                 {
                     "comment": "fn",
