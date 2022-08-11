@@ -2,7 +2,7 @@
     "name": "rei",
     "displayName": "Rei",
     "description": "Syntax highlighting for .rei files and the prei build system",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.63.0"
     },
