@@ -45,9 +45,9 @@
             ]
         },
         {
-            "comment": "attributes",
+            "comment": "annotations",
             "name": "meta.attribute.rei",
-            "begin": "(#)(\\!?)(\\[)",
+            "begin": "(@)(\\!?)(\\()",
             "beginCaptures": {
                 "1": {
                     "name": "punctuation.definition.attribute.rei"
@@ -59,7 +59,7 @@
                     "name": "punctuation.brackets.attribute.rei"
                 }
             },
-            "end": "\\]",
+            "end": "\\)",
             "endCaptures": {
                 "0": {
                     "name": "punctuation.brackets.attribute.rei"
