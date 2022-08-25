@@ -542,6 +542,11 @@
                     "match": "\\b(enum)\\b"
                 },
                 {
+                    "comment": "union keyword",
+                    "name": "keyword.declaration.union.rei storage.type.rei",
+                    "match": "\\b(union)\\b"
+                },
+                {
                     "comment": "trait keyword",
                     "name": "keyword.declaration.trait.rei storage.type.rei",
                     "match": "\\b(trait)\\b"
@@ -552,14 +557,14 @@
                     "match": "\\b(data)\\b"
                 },
                 {
-                    "comment": "class keyword",
-                    "name": "keyword.declaration.class.rei storage.type.rei",
-                    "match": "\\b(class)\\b"
+                    "comment": "system keyword",
+                    "name": "keyword.declaration.system.rei storage.type.rei",
+                    "match": "\\b(system)\\b"
                 },
                 {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(as|async|new|impl|in|internal|virtual|export|reexport|import|ref|unsafe|use|where|or|and|is)\\b"
+                    "match": "\\b(as|async|new|impl|in|pub|internal|require|ref|unsafe|use|where|or|and|is)\\b"
                 },
                 {
                     "comment": "fn",
@@ -780,14 +785,14 @@
                     }
                 },
                 {
-                    "comment": "class declarations",
-                    "match": "\\b(class)\\s+([A-Z][A-Za-z0-9]*)\\b",
+                    "comment": "system declarations",
+                    "match": "\\b(system)\\s+([A-Z][A-Za-z0-9]*)\\b",
                     "captures": {
                         "1": {
-                            "name": "keyword.declaration.class.rei storage.type.rei"
+                            "name": "keyword.declaration.system.rei storage.type.rei"
                         },
                         "2": {
-                            "name": "entity.name.type.class.rei"
+                            "name": "entity.name.type.system.rei"
                         }
                     }
                 },
@@ -800,6 +805,18 @@
                         },
                         "2": {
                             "name": "entity.name.type.enum.rei"
+                        }
+                    }
+                },
+                {
+                    "comment": "union declarations",
+                    "match": "\\b(union)\\s+([A-Z][A-Za-z0-9_]*)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.declaration.union.rei storage.type.rei"
+                        },
+                        "2": {
+                            "name": "entity.name.type.union.rei"
                         }
                     }
                 },
