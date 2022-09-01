@@ -135,9 +135,9 @@
             ]
         },
         {
-            "comment": "import statements",
-            "name": "meta.use.rei",
-            "begin": "\\b(import)\\s",
+            "comment": "export statements",
+            "name": "meta.export.rei",
+            "begin": "\\b(export)\\s",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.other.rei"
@@ -343,6 +343,11 @@
         },
         "functions": {
             "patterns": [
+                {
+                    "comment": "annotation definition",
+                    "name": "meta.annotation.definition.rei",
+                    "match": "\\b(@)\\s+([A-Z][A-Za-z0-9]*)"
+                },
                 {
                     "comment": "function definition",
                     "name": "meta.function.definition.rei",
@@ -564,7 +569,7 @@
                 {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(as|async|new|impl|in|pub|internal|require|ref|unsafe|use|where|or|and|is)\\b"
+                    "match": "\\b(annotation|macro|as|async|new|impl|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
                 },
                 {
                     "comment": "fn",
