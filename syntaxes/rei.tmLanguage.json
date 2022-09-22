@@ -567,9 +567,14 @@
                     "match": "\\b(system)\\b"
                 },
                 {
+                    "comment": "class keyword",
+                    "name": "keyword.declaration.class.rei storage.type.rei",
+                    "match": "\\b(class)\\b"
+                },
+                {
                     "comment": "other keywords",
                     "name": "keyword.other.rei",
-                    "match": "\\b(annotation|macro|as|async|new|impl|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
+                    "match": "\\b(annotation|macro|as|async|new|impl|default|complex|extend|with|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
                 },
                 {
                     "comment": "fn",
