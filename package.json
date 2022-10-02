@@ -2,11 +2,11 @@
     "name": "rei",
     "displayName": "Rei",
     "description": "Syntax highlighting for .rei files and the prei build system",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "engines": {
         "vscode": "^1.63.0"
     },
-    "icon": "icons/manta-ray.png",
+    "icon": "icons/ReiLogo.png",
     "categories": [
         "Programming Languages"
     ],
