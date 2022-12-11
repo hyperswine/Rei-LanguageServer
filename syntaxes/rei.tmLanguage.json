@@ -45,11 +45,11 @@
         {
             "comment": "annotations",
             "name": "meta.attribute.rei",
-            "match": "@[a-z][a-z0-9]*"
+            "match": "\\b@[a-z][a-z0-9]*"
         },
         {
             "comment": "modules",
-            "match": "(mod)\\s+((?:r#(?!outer|[Ss]elf|pkg))?[a-z][A-Za-z0-9_]*)",
+            "match": "\\b(mod)\\s+((?:(outer|[Ss]elf|pkg))?[a-z][A-Za-z0-9_]*)",
             "captures": {
                 "1": {
                     "name": "storage.type.rei"
@@ -196,7 +196,7 @@
                 {
                     "comment": "function/method calls, chaining",
                     "name": "meta.function.call.rei",
-                    "begin": "((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)\\(",
+                    "begin": "((?:(outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)\\(",
                     "end": "\\)",
                     "patterns": [
                         {
