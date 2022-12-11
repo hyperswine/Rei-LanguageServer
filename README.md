@@ -86,4 +86,77 @@ lower_case: ()
                     "begin": "[a-z0-9_]+\\:[ \n\t]\\(",
                     "end": "(\\{|[ \n\t])"
                 },
+
+SHOULD ALL BE EXRPESSIONS
+{
+            "include": "#specialVariables"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#specialTypes"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#namespaces"
+        },
+        {
+            "include": "#punctuation"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "comment": "annotations",
+            "name": "meta.attribute.rei",
+            "match": "\\b@[a-z][a-z0-9]*"
+        },
+        {
+            "comment": "modules",
+            "match": "\\b(mod)\\s+((?:(outer|[Ss]elf|pkg))?[a-z][A-Za-z0-9_]*)",
+            "captures": {
+                "1": {
+                    "name": "storage.type.rei"
+                },
+                "2": {
+                    "name": "entity.name.module.rei"
+                }
+            }
+        }
+
+I REMOVED ESCAPES
+"escapes": {
+    "comment": "escapes: ASCII, byte, Unicode, quote, regex",
+    "name": "constant.character.escape.rei",
+    "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
+    "captures": {
+        "1": {
+            "name": "constant.character.escape.backslash.rei"
+        },
+        "2": {
+            "name": "constant.character.escape.bit.rei"
+        },
+        "3": {
+            "name": "constant.character.escape.unicode.rei"
+        },
+        "4": {
+            "name": "constant.character.escape.unicode.punctuation.rei"
+        },
+        "5": {
+            "name": "constant.character.escape.unicode.punctuation.rei"
+        }
+    }
+},
 ```
