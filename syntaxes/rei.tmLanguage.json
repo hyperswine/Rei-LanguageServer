@@ -14,7 +14,6 @@
   "repository": {
     "expressions": {
       "patterns": [
-        { "include": "#constants" },
         { "include": "#keywords" },
         { "include": "#namespaces" },
         { "include": "#types" },
@@ -23,7 +22,9 @@
         { "include": "#punctuation" },
         { "include": "#strings" },
         { "include": "#specialTypes" },
-        { "include": "#generalDefs" }
+        { "include": "#generalDefs" },
+        { "include": "#sequentialDefs" },
+        { "include": "#constants" }
       ]
     },
     "generalDefs": {
@@ -33,7 +34,7 @@
           "match": "\\b[A-Z][A-Za-z0-9]*(\\:)\\s+\\b",
           "captures": {
             "1": {
-              "name": "keyword.declaration.generaldef.rust storage.type.rei"
+              "name": "keyword.declaration.generaldef.rei storage.type.rei"
             },
             "2": {
               "name": "entity.name.type.generaldef.rei"
@@ -41,10 +42,27 @@
           },
           "patterns": [
             {
-                "name": "variable.name.rei",
-                "match": "\\b[A-Z][A-Za-z0-9]*"
+              "name": "variable.name.rei",
+              "match": "\\b[A-Z][A-Za-z0-9]*"
             }
           ]
+        }
+      ]
+    },
+    "sequentialDefs": {
+      "patterns": [
+        {
+          "comment": "Sequential Definitions",
+          "match": "\\b(let|mut|const|static)[a-z][A-Za-z0-9]*\\s+(=)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.sequential.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.sequential.rei"
+            }
+          },
+          "patterns": [{ "include": "#variables" }]
         }
       ]
     },
@@ -258,11 +276,6 @@
               "name": "punctuation.brackets.curly.rei"
             }
           }
-        },
-        {
-          "comment": "namespace operator",
-          "name": "keyword.operator.namespace.rei",
-          "match": "::"
         },
         {
           "comment": "dereference asterisk",
