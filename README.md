@@ -159,4 +159,46 @@ I REMOVED ESCAPES
         }
     }
 },
+
+REMOVED
+
+{
+          "comment": "parameterised expression definitions",
+          "name": "meta.function.definition.rei",
+          "begin": "_?[a-z][a-z0-9_]*(:)\\s+(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.function.rei"
+            },
+            "2": {
+              "name": "punctuation.brackets.round.rei"
+            },
+            "3": {
+              "name": "punctuation.brackets.generic.rei"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.brackets.round.rei"
+            },
+            "2": {
+              "name": "punctuation.brackets.generic.rei"
+            }
+          }
+        }
+Should be a new expression for variable or sequential defs
+let x = something
+x should be blue
+
+X: ()
+X should be green
+Xs: ()
+Xs should be green
+
+XS: ()
+XS should be white
+
+xs: ()
+xs should be yellow
 ```
