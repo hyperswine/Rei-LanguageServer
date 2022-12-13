@@ -4,11 +4,9 @@
   "fileTypes": ["asm", "pasm"],
   "scopeName": "source.pasm",
   "patterns": [
+    { "include": "#comments" },
     {
       "include": "#expressions"
-    },
-    {
-      "include": "#comments"
     }
   ],
   "repository": {
@@ -25,23 +23,33 @@
       "patterns": [
         {
           "comment": "line comments",
-          "name": "comment.line.double-slash.phantasm",
-          "match": "//.*"
+          "name": "comment.line.double-slash.rei",
+          "match": "\\s*//.*"
         },
         {
           "comment": "doc comments",
-          "name": "comment.line.number-sign.phantasm",
-          "match": "#.*"
+          "name": "comment.line.number-sign.rei",
+          "match": "\\s*#.*"
+        },
+        {
+          "comment": "empty block comments",
+          "name": "comment.block.rei",
+          "match": "/\\*\\*/"
+        },
+        {
+          "comment": "empty documentation comments",
+          "name": "comment.block.documentation.rei",
+          "match": "#\\*\\*#"
         },
         {
           "comment": "general block comments",
-          "name": "comment.block.general.phantasm",
-          "begin": "/\\*",
+          "name": "comment.block.rei",
+          "begin": "/\\*.*",
           "end": "\\*/"
         },
         {
           "comment": "block documentation comments",
-          "name": "comment.block.documentation.phantasm",
+          "name": "comment.block.documentation.rei",
           "begin": "#\\*",
           "end": "\\*#"
         }

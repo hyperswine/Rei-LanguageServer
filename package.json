@@ -2,7 +2,7 @@
     "name": "rei",
     "displayName": "Rei",
     "description": "Syntax highlighting for .rei files and the prei build system",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "engines": {
         "vscode": "^1.63.0"
     },
@@ -49,7 +49,7 @@
             {
                 "language": "rei",
                 "scopeName": "source.rei",
-                "path": "./syntaxes/rei.tmLanguage.json"
+                "path": "./syntaxes/rei.json"
             },
             {
                 "language": "phantasm",

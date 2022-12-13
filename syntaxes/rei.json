@@ -5,10 +5,10 @@
   "scopeName": "source.rei",
   "patterns": [
     {
-      "include": "#expressions"
+      "include": "#comments"
     },
     {
-      "include": "#comments"
+      "include": "#expressions"
     }
   ],
   "repository": {
@@ -71,17 +71,27 @@
         {
           "comment": "line comments",
           "name": "comment.line.double-slash.rei",
-          "match": "//.*"
+          "match": "\\s*//.*"
         },
         {
           "comment": "doc comments",
           "name": "comment.line.number-sign.rei",
-          "match": "#.*"
+          "match": "\\s*#.*"
+        },
+        {
+          "comment": "empty block comments",
+          "name": "comment.block.rei",
+          "match": "/\\*\\*/"
+        },
+        {
+          "comment": "empty documentation comments",
+          "name": "comment.block.documentation.rei",
+          "match": "#\\*\\*#"
         },
         {
           "comment": "general block comments",
           "name": "comment.block.rei",
-          "begin": "/\\*",
+          "begin": "/\\*.*",
           "end": "\\*/"
         },
         {
