@@ -1,0 +1,514 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Phantasm",
+  "fileTypes": ["asm", "pasm"],
+  "scopeName": "source.pasm",
+  "patterns": [
+    {
+      "include": "#expressions"
+    },
+    {
+      "include": "#comments"
+    }
+  ],
+  "repository": {
+    "expressions": {
+      "patterns": [
+        { "include": "#keywords" },
+        { "include": "#types" },
+        { "include": "#constants" }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "comment": "line comments",
+          "name": "comment.line.double-slash.phantasm",
+          "match": "//.*"
+        },
+        {
+          "comment": "doc comments",
+          "name": "comment.line.number-sign.phantasm",
+          "match": "#.*"
+        },
+        {
+          "comment": "general block comments",
+          "name": "comment.block.phantasm",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "comment": "block documentation comments",
+          "name": "comment.block.documentation.phantasm",
+          "begin": "#\\*",
+          "end": "\\*#"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "comment": "ALL CAPS constants",
+          "name": "constant.other.caps.phantasm",
+          "match": "\\b[A-Z]{2}[A-Z0-9_]*\\b"
+        },
+        {
+          "comment": "constant declarations",
+          "match": "\\b(const)\\s+([A-Z][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "storage.type.phantasm"
+            },
+            "2": {
+              "name": "constant.other.caps.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "decimal integers and floats",
+          "name": "constant.numeric.decimal.phantasm",
+          "match": "\\b\\d[\\d_]*(\\.?)[\\d_]*(?:(E)([+-])([\\d_]+))?(f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.dot.decimal.phantasm"
+            },
+            "2": {
+              "name": "keyword.operator.exponent.phantasm"
+            },
+            "3": {
+              "name": "keyword.operator.exponent.sign.phantasm"
+            },
+            "4": {
+              "name": "constant.numeric.decimal.exponent.mantissa.phantasm"
+            },
+            "5": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "hexadecimal integers",
+          "name": "constant.numeric.hex.phantasm",
+          "match": "\\b0x[\\da-fA-F_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "octal integers",
+          "name": "constant.numeric.oct.phantasm",
+          "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "binary integers",
+          "name": "constant.numeric.bin.phantasm",
+          "match": "\\b0b[01_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "booleans",
+          "name": "constant.language.bool.phantasm",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "comment": "parameterised expression calls",
+          "name": "meta.function.call.phantasm",
+          "begin": "((?:(outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.function.phantasm"
+            },
+            "2": {
+              "name": "punctuation.brackets.round.phantasm"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.brackets.round.phantasm"
+            }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "comment": "control flow keywords",
+          "name": "keyword.control.phantasm",
+          "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield)\\b"
+        },
+        {
+          "comment": "storage modifier keywords",
+          "name": "storage.modifier.phantasm",
+          "match": "\\b(static|const|let|mut)\\b"
+        },
+        {
+          "comment": "object keywords",
+          "name": "keyword.object.phantasm",
+          "match": "\\b(enum|trait|impl|data|system|extend|complex|unsafe|annotation|replace|async)\\b"
+        },
+        {
+          "comment": "module keywords",
+          "name": "keyword.module.phantasm",
+          "match": "\\b(export|mod|internal|require)\\b"
+        },
+        {
+          "comment": "other keywords",
+          "name": "keyword.other.phantasm",
+          "match": "\\b(as|new|default|with|in|ref|use|where|or|and|is)\\b"
+        },
+        {
+          "comment": "logical operators",
+          "name": "keyword.operator.logical.phantasm",
+          "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
+        },
+        {
+          "comment": "logical AND, borrow references",
+          "name": "keyword.operator.borrow.and.phantasm",
+          "match": "&(?![&=])"
+        },
+        {
+          "comment": "assignment operators",
+          "name": "keyword.operator.assignment.phantasm",
+          "match": "(\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=|<<=|>>=)"
+        },
+        {
+          "comment": "single equal",
+          "name": "keyword.operator.assignment.equal.phantasm",
+          "match": "(?<![<>])=(?!=|>)"
+        },
+        {
+          "comment": "comparison operators",
+          "name": "keyword.operator.comparison.phantasm",
+          "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+        },
+        {
+          "comment": "math operators",
+          "name": "keyword.operator.math.phantasm",
+          "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
+        },
+        {
+          "comment": "less than, greater than (special case)",
+          "match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
+          "captures": {
+            "1": {
+              "name": "punctuation.brackets.round.phantasm"
+            },
+            "2": {
+              "name": "punctuation.brackets.square.phantasm"
+            },
+            "3": {
+              "name": "punctuation.brackets.curly.phantasm"
+            },
+            "4": {
+              "name": "keyword.operator.comparison.phantasm"
+            },
+            "5": {
+              "name": "punctuation.brackets.round.phantasm"
+            },
+            "6": {
+              "name": "punctuation.brackets.square.phantasm"
+            },
+            "7": {
+              "name": "punctuation.brackets.curly.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "dereference asterisk",
+          "match": "(\\*)(?=\\w+)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.dereference.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "subpattern binding",
+          "name": "keyword.operator.subpattern.phantasm",
+          "match": "@"
+        },
+        {
+          "comment": "dot access",
+          "name": "keyword.operator.access.dot.phantasm",
+          "match": "\\.(?!\\.)"
+        },
+        {
+          "comment": "ranges, range patterns",
+          "name": "keyword.operator.range.phantasm",
+          "match": "\\.{2}(=|\\.)?"
+        },
+        {
+          "comment": "colon",
+          "name": "keyword.operator.key-value.phantasm",
+          "match": ":(?!:)"
+        },
+        {
+          "comment": "dashrocket, skinny arrow",
+          "name": "keyword.operator.arrow.skinny.phantasm",
+          "match": "->"
+        },
+        {
+          "comment": "hashrocket, fat arrow",
+          "name": "keyword.operator.arrow.fat.phantasm",
+          "match": "=>"
+        }
+      ]
+    },
+    "interpolations": {
+      "comment": "curly brace interpolations",
+      "name": "meta.interpolation.phantasm",
+      "match": "{[^\"{}]*}",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.interpolation.phantasm"
+        },
+        "2": {
+          "name": "punctuation.definition.interpolation.phantasm"
+        }
+      }
+    },
+    "namespaces": {
+      "patterns": [
+        {
+          "comment": "namespace (non-type, non-function path segment)",
+          "match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!outer|pkg|self)::)",
+          "captures": {
+            "1": {
+              "name": "entity.name.namespace.phantasm"
+            },
+            "2": {
+              "name": "keyword.operator.namespace.phantasm"
+            }
+          }
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "comment": "numeric types",
+          "match": "(?<![A-Za-z])(f16|f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "parameterized types",
+          "begin": "\\b([A-Z][A-Za-z0-9]*)\\[",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.type.phantasm"
+            },
+            "2": {
+              "name": "punctuation.brackets.angle.phantasm"
+            }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.brackets.angle.phantasm"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#block-comments"
+            },
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#specialVariables"
+            },
+            {
+              "include": "#punctuation"
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        },
+        {
+          "comment": "primitive types",
+          "name": "entity.name.type.primitive.phantasm",
+          "match": "\\b(Bits|Numeric|String|Char|Bool)\\b"
+        }
+      ]
+    },
+    "specialTypes": {
+      "patterns": [
+        {
+          "comment": "result types",
+          "name": "entity.name.type.result.phantasm",
+          "match": "\\b(Ok|Err)\\b"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "comment": "comma",
+          "name": "punctuation.comma.phantasm",
+          "match": ","
+        },
+        {
+          "comment": "curly braces",
+          "name": "punctuation.brackets.curly.phantasm",
+          "match": "[{}]"
+        },
+        {
+          "comment": "parentheses, round brackets",
+          "name": "punctuation.brackets.round.phantasm",
+          "match": "[()]"
+        },
+        {
+          "comment": "whitespace",
+          "name": "punctuation.ws.phantasm",
+          "match": "[ \n\t]"
+        },
+        {
+          "comment": "square brackets",
+          "name": "punctuation.brackets.square.phantasm",
+          "match": "[\\[\\]]"
+        },
+        {
+          "comment": "generic brackets",
+          "name": "punctuation.brackets.generic.phantasm",
+          "match": "(?<!=)[\\[\\]]"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "comment": "double-quoted strings and byte strings",
+          "name": "string.quoted.double.phantasm",
+          "begin": "(b?)(\")",
+          "beginCaptures": {
+            "1": {
+              "name": "string.quoted.byte.raw.phantasm"
+            },
+            "2": {
+              "name": "punctuation.definition.string.phantasm"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.phantasm"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#escapes"
+            },
+            {
+              "include": "#interpolations"
+            }
+          ]
+        },
+        {
+          "comment": "double-quoted raw strings and raw byte strings",
+          "name": "string.quoted.double.phantasm",
+          "begin": "(b?r)(#*)(\")",
+          "beginCaptures": {
+            "1": {
+              "name": "string.quoted.byte.raw.phantasm"
+            },
+            "2": {
+              "name": "punctuation.definition.string.raw.phantasm"
+            },
+            "3": {
+              "name": "punctuation.definition.string.phantasm"
+            }
+          },
+          "end": "(\")(\\2)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.phantasm"
+            },
+            "2": {
+              "name": "punctuation.definition.string.raw.phantasm"
+            }
+          }
+        },
+        {
+          "comment": "characters and bytes",
+          "name": "string.quoted.single.char.phantasm",
+          "begin": "(b)?(')",
+          "beginCaptures": {
+            "1": {
+              "name": "string.quoted.byte.raw.phantasm"
+            },
+            "2": {
+              "name": "punctuation.definition.char.phantasm"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.char.phantasm"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#escapes"
+            }
+          ]
+        }
+      ]
+    },
+    "specialVariables": {
+      "patterns": [
+        {
+          "comment": "self",
+          "name": "variable.language.self.phantasm",
+          "match": "\\b[Ss]elf\\b"
+        },
+        {
+          "comment": "super",
+          "name": "variable.language.super.phantasm",
+          "match": "\\bsuper\\b"
+        },
+        {
+          "comment": "pkg",
+          "name": "variable.language.pkg.phantasm",
+          "match": "\\bpkg\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "comment": "variables",
+          "name": "variable.other.phantasm",
+          "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(outer|[Ss]elf|pkg)))?[a-z0-9_]+\\b"
+        }
+      ]
+    }
+  }
+}

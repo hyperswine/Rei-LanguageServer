@@ -26,6 +26,23 @@
                     "light": "./icons/Rei.png",
                     "dark": "./icons/Rei-Light.png"
                 }
+            },
+            {
+                "id": "phantasm",
+                "aliases": [
+                    "Phantasm",
+                    "phantasm",
+                    "pasm"
+                ],
+                "extensions": [
+                    ".asm",
+                    ".pasm"
+                ],
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "./icons/Rei.png",
+                    "dark": "./icons/Rei-Light.png"
+                }
             }
         ],
         "grammars": [
@@ -33,6 +50,11 @@
                 "language": "rei",
                 "scopeName": "source.rei",
                 "path": "./syntaxes/rei.tmLanguage.json"
+            },
+            {
+                "language": "phantasm",
+                "scopeName": "source.pasm",
+                "path": "./syntaxes/phantasm.json"
             }
         ]
     },
