@@ -17,7 +17,8 @@
         { "include": "#keywords" },
         { "include": "#types" },
         { "include": "#constants" },
-        { "include": "#variables" }
+        { "include": "#variables" },
+        { "include": "#strings" }
       ]
     },
     "comments": {
@@ -34,7 +35,7 @@
         },
         {
           "comment": "general block comments",
-          "name": "comment.block.phantasm",
+          "name": "comment.block.general.phantasm",
           "begin": "/\\*",
           "end": "\\*/"
         },
@@ -52,18 +53,6 @@
           "comment": "ALL CAPS constants",
           "name": "constant.other.caps.phantasm",
           "match": "\\b[A-Z]{2}[A-Z0-9_]*\\b"
-        },
-        {
-          "comment": "constant declarations",
-          "match": "\\b(const)\\s+([A-Z][A-Za-z0-9_]*)\\b",
-          "captures": {
-            "1": {
-              "name": "storage.type.phantasm"
-            },
-            "2": {
-              "name": "constant.other.caps.phantasm"
-            }
-          }
         },
         {
           "comment": "decimal integers and floats",
@@ -124,34 +113,11 @@
         }
       ]
     },
-    "functions": {
-      "patterns": [
-        {
-          "comment": "parameterised expression calls",
-          "name": "meta.function.call.phantasm",
-          "begin": "((?:(outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(\\()",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.name.function.phantasm"
-            },
-            "2": {
-              "name": "punctuation.brackets.round.phantasm"
-            }
-          },
-          "end": "\\)",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.brackets.round.phantasm"
-            }
-          }
-        }
-      ]
-    },
     "keywords": {
       "patterns": [
         {
           "name": "keyword.meta.phantasm",
-          "match": "\\b(imm|sp|store)\\b"
+          "match": "\\b(imm|sp|store|call|extern|data|global|code)\\b"
         },
         {
           "comment": "logical operators",
@@ -211,15 +177,6 @@
           }
         },
         {
-          "comment": "dereference asterisk",
-          "match": "(\\*)(?=\\w+)",
-          "captures": {
-            "1": {
-              "name": "keyword.operator.dereference.phantasm"
-            }
-          }
-        },
-        {
           "comment": "dot access",
           "name": "keyword.operator.access.dot.phantasm",
           "match": "\\.(?!\\.)"
@@ -259,41 +216,6 @@
               "name": "entity.name.type.numeric.phantasm"
             }
           }
-        },
-        {
-          "comment": "parameterized types",
-          "begin": "\\b([A-Z][A-Za-z0-9]*)\\[",
-          "beginCaptures": {
-            "1": {
-              "name": "entity.name.type.phantasm"
-            },
-            "2": {
-              "name": "punctuation.brackets.angle.phantasm"
-            }
-          },
-          "end": "\\]",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.brackets.angle.phantasm"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#comments"
-            },
-            {
-              "include": "#keywords"
-            },
-            {
-              "include": "#punctuation"
-            },
-            {
-              "include": "#types"
-            },
-            {
-              "include": "#variables"
-            }
-          ]
         }
       ]
     },
@@ -416,7 +338,7 @@
         {
           "comment": "variables",
           "name": "variable.other.phantasm",
-          "match": "\\b(?<!(?<!\\.)\\.)(?:r#(?!(outer|[Ss]elf|pkg)))?[a-z0-9_]+\\b"
+          "match": "\\b(?<!(?<!\\.)\\.)[a-z0-9_]+\\b"
         }
       ]
     }
