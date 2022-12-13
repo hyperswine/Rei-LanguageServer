@@ -16,7 +16,8 @@
       "patterns": [
         { "include": "#keywords" },
         { "include": "#types" },
-        { "include": "#constants" }
+        { "include": "#constants" },
+        { "include": "#variables" }
       ]
     },
     "comments": {
@@ -149,29 +150,8 @@
     "keywords": {
       "patterns": [
         {
-          "comment": "control flow keywords",
-          "name": "keyword.control.phantasm",
-          "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield)\\b"
-        },
-        {
-          "comment": "storage modifier keywords",
-          "name": "storage.modifier.phantasm",
-          "match": "\\b(static|const|let|mut)\\b"
-        },
-        {
-          "comment": "object keywords",
-          "name": "keyword.object.phantasm",
-          "match": "\\b(enum|trait|impl|data|system|extend|complex|unsafe|annotation|replace|async)\\b"
-        },
-        {
-          "comment": "module keywords",
-          "name": "keyword.module.phantasm",
-          "match": "\\b(export|mod|internal|require)\\b"
-        },
-        {
-          "comment": "other keywords",
-          "name": "keyword.other.phantasm",
-          "match": "\\b(as|new|default|with|in|ref|use|where|or|and|is)\\b"
+          "name": "keyword.meta.phantasm",
+          "match": "\\b(imm|sp|store)\\b"
         },
         {
           "comment": "logical operators",
@@ -240,11 +220,6 @@
           }
         },
         {
-          "comment": "subpattern binding",
-          "name": "keyword.operator.subpattern.phantasm",
-          "match": "@"
-        },
-        {
           "comment": "dot access",
           "name": "keyword.operator.access.dot.phantasm",
           "match": "\\.(?!\\.)"
@@ -258,16 +233,6 @@
           "comment": "colon",
           "name": "keyword.operator.key-value.phantasm",
           "match": ":(?!:)"
-        },
-        {
-          "comment": "dashrocket, skinny arrow",
-          "name": "keyword.operator.arrow.skinny.phantasm",
-          "match": "->"
-        },
-        {
-          "comment": "hashrocket, fat arrow",
-          "name": "keyword.operator.arrow.fat.phantasm",
-          "match": "=>"
         }
       ]
     },
@@ -283,22 +248,6 @@
           "name": "punctuation.definition.interpolation.phantasm"
         }
       }
-    },
-    "namespaces": {
-      "patterns": [
-        {
-          "comment": "namespace (non-type, non-function path segment)",
-          "match": "(?<![A-Za-z0-9_])([a-z0-9_]+)((?<!outer|pkg|self)::)",
-          "captures": {
-            "1": {
-              "name": "entity.name.namespace.phantasm"
-            },
-            "2": {
-              "name": "keyword.operator.namespace.phantasm"
-            }
-          }
-        }
-      ]
     },
     "types": {
       "patterns": [
@@ -330,16 +279,10 @@
           },
           "patterns": [
             {
-              "include": "#block-comments"
-            },
-            {
               "include": "#comments"
             },
             {
               "include": "#keywords"
-            },
-            {
-              "include": "#specialVariables"
             },
             {
               "include": "#punctuation"
@@ -351,20 +294,6 @@
               "include": "#variables"
             }
           ]
-        },
-        {
-          "comment": "primitive types",
-          "name": "entity.name.type.primitive.phantasm",
-          "match": "\\b(Bits|Numeric|String|Char|Bool)\\b"
-        }
-      ]
-    },
-    "specialTypes": {
-      "patterns": [
-        {
-          "comment": "result types",
-          "name": "entity.name.type.result.phantasm",
-          "match": "\\b(Ok|Err)\\b"
         }
       ]
     },
@@ -479,25 +408,6 @@
               "include": "#escapes"
             }
           ]
-        }
-      ]
-    },
-    "specialVariables": {
-      "patterns": [
-        {
-          "comment": "self",
-          "name": "variable.language.self.phantasm",
-          "match": "\\b[Ss]elf\\b"
-        },
-        {
-          "comment": "super",
-          "name": "variable.language.super.phantasm",
-          "match": "\\bsuper\\b"
-        },
-        {
-          "comment": "pkg",
-          "name": "variable.language.pkg.phantasm",
-          "match": "\\bpkg\\b"
         }
       ]
     },
