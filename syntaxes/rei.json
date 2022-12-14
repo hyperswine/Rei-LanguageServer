@@ -1,7 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Rei",
-  "fileTypes": ["rei"],
+  "fileTypes": [
+    "rei"
+  ],
   "scopeName": "source.rei",
   "patterns": [
     {
@@ -14,24 +16,46 @@
   "repository": {
     "expressions": {
       "patterns": [
-        { "include": "#keywords" },
-        { "include": "#namespaces" },
-        { "include": "#types" },
-        { "include": "#specialVariables" },
-        { "include": "#functions" },
-        { "include": "#punctuation" },
-        { "include": "#strings" },
-        { "include": "#specialTypes" },
-        { "include": "#generalDefs" },
-        { "include": "#sequentialDefs" },
-        { "include": "#constants" }
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#namespaces"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#specialVariables"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#specialTypes"
+        },
+        {
+          "include": "#generalDefs"
+        },
+        {
+          "include": "#sequentialDefs"
+        },
+        {
+          "include": "#constants"
+        }
       ]
     },
     "generalDefs": {
       "patterns": [
         {
           "comment": "General Definitions",
-          "match": "(\\b)([A-Z][A-Za-z0-9]*)(\\:).*",
+          "match": "(\\b[A-Z][A-Za-z0-9]*(\\[.*\\])?)(\\:)(\\s*)",
           "captures": {
             "1": {
               "name": "keyword.declaration.generaldef.rei storage.type.rei"
@@ -43,8 +67,9 @@
         },
         {
           "comment": "Paramerised Definitions",
-          "match": "\\b(_?[a-z][a-z0-9_]*(\\[.*\\])?)(\\:)\\s+\\(",
-          "captures": {
+          "begin": "(\\b)(_?[a-z][a-z0-9_]*(\\[.*\\])?)(\\:)\\s*\\(",
+          "end": "\\)",
+          "beginCaptures": {
             "1": {
               "name": "keyword.declaration.generalparameterised.rei storage.type.rei"
             },
@@ -71,7 +96,11 @@
               "name": "entity.name.type.sequential.rei"
             }
           },
-          "patterns": [{ "include": "#variables" }]
+          "patterns": [
+            {
+              "include": "#variables"
+            }
+          ]
         }
       ]
     },
@@ -393,35 +422,17 @@
             "0": {
               "name": "punctuation.brackets.angle.rei"
             }
-          },
-          "patterns": [
-            {
-              "include": "#block-comments"
-            },
-            {
-              "include": "#comments"
-            },
-            {
-              "include": "#keywords"
-            },
-            {
-              "include": "#specialVariables"
-            },
-            {
-              "include": "#punctuation"
-            },
-            {
-              "include": "#types"
-            },
-            {
-              "include": "#variables"
-            }
-          ]
+          }
         },
         {
           "comment": "primitive types",
           "name": "entity.name.type.primitive.rei",
           "match": "\\b(Bits|Numeric|String|Char|Bool)\\b"
+        },
+        {
+          "comment": "types",
+          "name": "entity.name.type.rei",
+          "match": "\\b[A-Z][A-Za-z0-9]*\\b(?!!)"
         }
       ]
     },
