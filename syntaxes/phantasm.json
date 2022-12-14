@@ -133,8 +133,8 @@
           "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
         },
         {
-          "comment": "logical AND, borrow references",
-          "name": "keyword.operator.borrow.and.phantasm",
+          "comment": "logical AND",
+          "name": "keyword.operator.and.phantasm",
           "match": "&(?![&=])"
         },
         {
@@ -183,21 +183,6 @@
               "name": "punctuation.brackets.curly.phantasm"
             }
           }
-        },
-        {
-          "comment": "dot access",
-          "name": "keyword.operator.access.dot.phantasm",
-          "match": "\\.(?!\\.)"
-        },
-        {
-          "comment": "ranges, range patterns",
-          "name": "keyword.operator.range.phantasm",
-          "match": "\\.{2}(=|\\.)?"
-        },
-        {
-          "comment": "colon",
-          "name": "keyword.operator.key-value.phantasm",
-          "match": ":(?!:)"
         }
       ]
     },
@@ -216,6 +201,16 @@
     },
     "types": {
       "patterns": [
+        {
+          "comment": "general def",
+          "begin": "\\b([a-z][a-z_0-9]*)\\:\\b",
+          "end": "\\b([a-z][a-z_0-9]*)\\:\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.general.phantasm"
+            }
+          }
+        },
         {
           "comment": "numeric types",
           "match": "(?<![A-Za-z])(f16|f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
@@ -253,11 +248,6 @@
           "comment": "square brackets",
           "name": "punctuation.brackets.square.phantasm",
           "match": "[\\[\\]]"
-        },
-        {
-          "comment": "generic brackets",
-          "name": "punctuation.brackets.generic.phantasm",
-          "match": "(?<!=)[\\[\\]]"
         }
       ]
     },
@@ -282,9 +272,6 @@
             }
           },
           "patterns": [
-            {
-              "include": "#escapes"
-            },
             {
               "include": "#interpolations"
             }
@@ -332,12 +319,7 @@
             "0": {
               "name": "punctuation.definition.char.phantasm"
             }
-          },
-          "patterns": [
-            {
-              "include": "#escapes"
-            }
-          ]
+          }
         }
       ]
     },

@@ -2,7 +2,7 @@
     "name": "rei",
     "displayName": "Rei",
     "description": "Syntax highlighting for .rei files and the prei build system",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "engines": {
         "vscode": "^1.63.0"
     },
@@ -40,8 +40,8 @@
                 ],
                 "configuration": "./language-configuration.json",
                 "icon": {
-                    "light": "./icons/Rei.png",
-                    "dark": "./icons/Rei-Light.png"
+                    "light": "./icons/Phantasm-Light.png",
+                    "dark": "./icons/Phantasm-Dark.png"
                 }
             }
         ],
