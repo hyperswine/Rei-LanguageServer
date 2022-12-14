@@ -31,7 +31,7 @@
       "patterns": [
         {
           "comment": "General Definitions",
-          "match": "\\b[A-Z][A-Za-z0-9]*(\\:)\\s+\\b",
+          "match": "(\\b)([A-Z][A-Za-z0-9]*)(\\:).*",
           "captures": {
             "1": {
               "name": "keyword.declaration.generaldef.rei storage.type.rei"
@@ -39,13 +39,22 @@
             "2": {
               "name": "entity.name.type.generaldef.rei"
             }
-          },
-          "patterns": [
-            {
-              "name": "variable.name.rei",
-              "match": "\\b[A-Z][A-Za-z0-9]*"
+          }
+        },
+        {
+          "comment": "Paramerised Definitions",
+          "match": "\\b(_?[a-z][a-z0-9_]*(\\[.*\\])?)(\\:)\\s+\\(",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.generalparameterised.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.generalparameterised.rei"
+            },
+            "3": {
+              "name": "punctuation.brackets.round.rei"
             }
-          ]
+          }
         }
       ]
     },
@@ -53,7 +62,7 @@
       "patterns": [
         {
           "comment": "Sequential Definitions",
-          "match": "\\b(let|mut|const|static)[a-z][A-Za-z0-9]*\\s+(=)",
+          "match": "(let|mut|const|static)(_?[a-z][a-z0-9_]*)\\s+=.*",
           "captures": {
             "1": {
               "name": "keyword.declaration.sequential.rei storage.type.rei"

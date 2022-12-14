@@ -203,7 +203,7 @@
       "patterns": [
         {
           "comment": "general def",
-          "match": "(\\b)\\s*([a-z][a-z_0-9]*)(\\:).*",
+          "match": "(\\b)\\s*(_?[a-z][a-z_0-9]*)(\\:).*",
           "captures": {
             "1": {
               "name": "keyword.definition.phantasm storage.type.phantasm"
