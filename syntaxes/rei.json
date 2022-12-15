@@ -17,10 +17,10 @@
     "expressions": {
       "patterns": [
         {
-          "include": "#generalDefs"
+          "include": "#keywords"
         },
         {
-          "include": "#keywords"
+          "include": "#generalDefs"
         },
         {
           "include": "#namespaces"
