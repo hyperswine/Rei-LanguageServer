@@ -17,6 +17,9 @@
     "expressions": {
       "patterns": [
         {
+          "include": "#generalDefs"
+        },
+        {
           "include": "#keywords"
         },
         {
@@ -41,13 +44,13 @@
           "include": "#specialTypes"
         },
         {
-          "include": "#generalDefs"
-        },
-        {
           "include": "#sequentialDefs"
         },
         {
           "include": "#constants"
+        },
+        {
+          "include": "#variables"
         }
       ]
     },
@@ -55,7 +58,7 @@
       "patterns": [
         {
           "comment": "General Definitions",
-          "match": "(\\b[A-Z][A-Za-z0-9]*(\\[.*\\])?)(\\:)(\\s*)",
+          "match": "(\\b)(_?[A-Za-z0-9][A-Za-z0-9_]*)(.*)(\\:)(\\s+\\()?",
           "captures": {
             "1": {
               "name": "keyword.declaration.generaldef.rei storage.type.rei"
@@ -63,23 +66,30 @@
             "2": {
               "name": "entity.name.type.generaldef.rei"
             }
-          }
-        },
-        {
-          "comment": "Paramerised Definitions",
-          "begin": "(\\b)(_?[a-z][a-z0-9_]*(\\[.*\\])?)(\\:)\\s*\\(",
-          "end": "\\)",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.declaration.generalparameterised.rei storage.type.rei"
-            },
-            "2": {
-              "name": "entity.name.type.generalparameterised.rei"
-            },
-            "3": {
-              "name": "punctuation.brackets.round.rei"
+          },
+          "patterns": [
+            {
+              "comment": "Type Parameterised Ident",
+              "begin": "(\\[)",
+              "end": "\\]",
+              "captures": {
+                "1": {
+                  "name": "keyword.declaration.typeparamident.rei"
+                }
+              },
+              "patterns": [
+                {
+                  "comment": "Type Parameter",
+                  "match": "(_?[A-Za-z0-9][A-Za-z0-9_]*)(\\s+where)?",
+                  "captures": {
+                    "1": {
+                      "name": "meta.typeparam.rei storage.type.rei"
+                    }
+                  }
+                }
+              ]
             }
-          }
+          ]
         }
       ]
     },
@@ -87,7 +97,7 @@
       "patterns": [
         {
           "comment": "Sequential Definitions",
-          "match": "(let|mut|const|static)(_?[a-z][a-z0-9_]*)\\s+=.*",
+          "match": "(\\b(let|mut|const|static)(_?[a-z][a-z0-9_]*))\\s+=.*",
           "captures": {
             "1": {
               "name": "keyword.declaration.sequential.rei storage.type.rei"
