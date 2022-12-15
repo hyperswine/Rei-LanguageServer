@@ -7,32 +7,73 @@
   "scopeName": "source.rei",
   "patterns": [
     {
-      "include": "#comments"
-    },
-    {
-      "include": "#expressions"
-    }
-  ],
-  "repository": {
-    "expressions": {
+      "comment": "boxed slice literal",
+      "begin": "(<)(\\[)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.brackets.angle.rei"
+        },
+        "2": {
+          "name": "punctuation.brackets.square.rei"
+        }
+      },
+      "end": ">",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.brackets.angle.rei"
+        }
+      },
       "patterns": [
         {
-          "include": "#keywords"
+          "include": "#block-comments"
         },
         {
-          "include": "#generalDefs"
+          "include": "#comments"
         },
         {
-          "include": "#namespaces"
+          "include": "#gtypes"
+        },
+        {
+          "include": "#lvariables"
+        },
+        {
+          "include": "#punctuation"
         },
         {
           "include": "#types"
+        }
+      ]
+    },
+    {
+      "comment": "annotations",
+      "name": "meta.attribute.rei",
+      "begin": "(@)(\\!?)(\\()",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.attribute.rei"
+        },
+        "2": {
+          "name": "keyword.operator.attribute.inner.rei"
+        },
+        "3": {
+          "name": "punctuation.brackets.attribute.rei"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.brackets.attribute.rei"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#block-comments"
         },
         {
-          "include": "#specialVariables"
+          "include": "#comments"
         },
         {
-          "include": "#functions"
+          "include": "#keywords"
         },
         {
           "include": "#punctuation"
@@ -41,105 +82,155 @@
           "include": "#strings"
         },
         {
-          "include": "#specialTypes"
+          "include": "#gtypes"
         },
         {
-          "include": "#sequentialDefs"
-        },
-        {
-          "include": "#constants"
-        },
-        {
-          "include": "#variables"
+          "include": "#types"
         }
       ]
     },
-    "generalDefs": {
+    {
+      "comment": "modules",
+      "match": "(mod)\\s+((?:r#(?!outer|[Ss]elf|pkg))?[a-z][A-Za-z0-9_]*)",
+      "captures": {
+        "1": {
+          "name": "storage.type.rei"
+        },
+        "2": {
+          "name": "entity.name.module.rei"
+        }
+      }
+    },
+    {
+      "comment": "external import",
+      "name": "meta.import.rei",
+      "begin": "\\b(extern)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.rei"
+        },
+        "2": {
+          "name": "keyword.other.pkg.rei"
+        }
+      },
+      "end": "[ \t\n]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.semi.rei"
+        }
+      },
       "patterns": [
         {
-          "comment": "General Definitions",
-          "match": "(\\b)(_?[A-Za-z0-9][A-Za-z0-9_]*)(.*)(\\:)(\\s+\\()?",
-          "captures": {
-            "1": {
-              "name": "keyword.declaration.generaldef.rei storage.type.rei"
-            },
-            "2": {
-              "name": "entity.name.type.generaldef.rei"
-            }
-          },
-          "patterns": [
-            {
-              "comment": "Type Parameterised Ident",
-              "begin": "(\\[)",
-              "end": "\\]",
-              "captures": {
-                "1": {
-                  "name": "keyword.declaration.typeparamident.rei"
-                }
-              },
-              "patterns": [
-                {
-                  "comment": "Type Parameter",
-                  "match": "(_?[A-Za-z0-9][A-Za-z0-9_]*)(\\s+where)?",
-                  "captures": {
-                    "1": {
-                      "name": "meta.typeparam.rei storage.type.rei"
-                    }
-                  }
-                }
-              ]
-            }
-          ]
+          "include": "#block-comments"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#punctuation"
         }
       ]
     },
-    "sequentialDefs": {
+    {
+      "comment": "export statements",
+      "name": "meta.export.rei",
+      "begin": "\\b(export)\\s",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.rei"
+        }
+      },
+      "end": "[ \t\n]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.semi.rei"
+        }
+      },
       "patterns": [
         {
-          "comment": "Sequential Definitions",
-          "match": "(\\b(let|mut|const|static)(_?[a-z][a-z0-9_]*))\\s+=.*",
-          "captures": {
-            "1": {
-              "name": "keyword.declaration.sequential.rei storage.type.rei"
-            },
-            "2": {
-              "name": "entity.name.type.sequential.rei"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#variables"
-            }
-          ]
+          "include": "#block-comments"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#namespaces"
+        },
+        {
+          "include": "#punctuation"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#lvariables"
         }
       ]
     },
+    {
+      "include": "#block-comments"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#lvariables"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#gtypes"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#namespaces"
+    },
+    {
+      "include": "#punctuation"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#variables"
+    }
+  ],
+  "repository": {
     "comments": {
       "patterns": [
         {
           "comment": "line comments",
           "name": "comment.line.double-slash.rei",
-          "match": "\\s*//.*"
+          "match": "//.*"
         },
         {
           "comment": "doc comments",
           "name": "comment.line.number-sign.rei",
-          "match": "\\s*#.*"
-        },
-        {
-          "comment": "empty block comments",
-          "name": "comment.block.rei",
-          "match": "/\\*\\*/"
-        },
-        {
-          "comment": "empty documentation comments",
-          "name": "comment.block.documentation.rei",
-          "match": "#\\*\\*#"
-        },
+          "match": "#.*"
+        }
+      ]
+    },
+    "block-comments": {
+      "patterns": [
         {
           "comment": "general block comments",
           "name": "comment.block.rei",
-          "begin": "/\\*.*",
+          "begin": "/\\*",
           "end": "\\*/"
         },
         {
@@ -228,12 +319,102 @@
         }
       ]
     },
+    "escapes": {
+      "comment": "escapes: ASCII, byte, Unicode, quote, regex",
+      "name": "constant.character.escape.rei",
+      "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
+      "captures": {
+        "1": {
+          "name": "constant.character.escape.backslash.rei"
+        },
+        "2": {
+          "name": "constant.character.escape.bit.rei"
+        },
+        "3": {
+          "name": "constant.character.escape.unicode.rei"
+        },
+        "4": {
+          "name": "constant.character.escape.unicode.punctuation.rei"
+        },
+        "5": {
+          "name": "constant.character.escape.unicode.punctuation.rei"
+        }
+      }
+    },
     "functions": {
       "patterns": [
         {
-          "comment": "parameterised expression calls",
+          "comment": "annotation definition",
+          "name": "meta.annotation.definition.rei",
+          "match": "\\b(@)\\s+([A-Z][A-Za-z0-9]*)"
+        },
+        {
+          "comment": "function definition",
+          "name": "meta.function.definition.rei",
+          "begin": "\\b(fn)\\s+((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)((\\()|(<))",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.fn.rei"
+            },
+            "2": {
+              "name": "entity.name.function.rei"
+            },
+            "4": {
+              "name": "punctuation.brackets.round.rei"
+            },
+            "5": {
+              "name": "punctuation.brackets.angle.rei"
+            }
+          },
+          "end": "\\{",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.brackets.curly.rei"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#block-comments"
+            },
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#lvariables"
+            },
+            {
+              "include": "#constants"
+            },
+            {
+              "include": "#gtypes"
+            },
+            {
+              "include": "#functions"
+            },
+            {
+              "include": "#namespaces"
+            },
+            {
+              "include": "#punctuation"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        },
+        {
+          "comment": "function/method calls, chaining",
           "name": "meta.function.call.rei",
-          "begin": "((?:(outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(\\()",
+          "begin": "((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(\\()",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.rei"
@@ -247,7 +428,99 @@
             "0": {
               "name": "punctuation.brackets.round.rei"
             }
-          }
+          },
+          "patterns": [
+            {
+              "include": "#block-comments"
+            },
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#lvariables"
+            },
+            {
+              "include": "#constants"
+            },
+            {
+              "include": "#gtypes"
+            },
+            {
+              "include": "#functions"
+            },
+            {
+              "include": "#namespaces"
+            },
+            {
+              "include": "#punctuation"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
+        },
+        {
+          "comment": "function/method calls with turbofish",
+          "name": "meta.function.call.rei",
+          "begin": "((?:r#(?!outer|[Ss]elf|pkg))?[A-Za-z0-9_]+)(?=::<.*>\\()",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.function.rei"
+            }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.brackets.round.rei"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#block-comments"
+            },
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#lvariables"
+            },
+            {
+              "include": "#constants"
+            },
+            {
+              "include": "#gtypes"
+            },
+            {
+              "include": "#functions"
+            },
+            {
+              "include": "#namespaces"
+            },
+            {
+              "include": "#punctuation"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
         }
       ]
     },
@@ -259,24 +532,54 @@
           "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield)\\b"
         },
         {
-          "comment": "storage modifier keywords",
+          "comment": "const keyword",
           "name": "storage.modifier.rei",
-          "match": "\\b(static|const|let|mut)\\b"
+          "match": "\\b(const|extern|let|mut|mod)\\b"
         },
         {
-          "comment": "object keywords",
-          "name": "keyword.object.rei",
-          "match": "\\b(enum|trait|impl|data|system|extend|complex|unsafe|annotation|replace|async)\\b"
+          "comment": "type keyword",
+          "name": "keyword.declaration.type.rei storage.type.rei",
+          "match": "\\b(type)\\b"
         },
         {
-          "comment": "module keywords",
-          "name": "keyword.module.rei",
-          "match": "\\b(export|mod|internal|require)\\b"
+          "comment": "enum keyword",
+          "name": "keyword.declaration.enum.rei storage.type.rei",
+          "match": "\\b(enum)\\b"
+        },
+        {
+          "comment": "union keyword",
+          "name": "keyword.declaration.union.rei storage.type.rei",
+          "match": "\\b(union)\\b"
+        },
+        {
+          "comment": "trait keyword",
+          "name": "keyword.declaration.trait.rei storage.type.rei",
+          "match": "\\b(trait)\\b"
+        },
+        {
+          "comment": "data keyword",
+          "name": "keyword.declaration.data.rei storage.type.rei",
+          "match": "\\b(data)\\b"
+        },
+        {
+          "comment": "system keyword",
+          "name": "keyword.declaration.system.rei storage.type.rei",
+          "match": "\\b(system)\\b"
+        },
+        {
+          "comment": "class keyword",
+          "name": "keyword.declaration.class.rei storage.type.rei",
+          "match": "\\b(class)\\b"
         },
         {
           "comment": "other keywords",
           "name": "keyword.other.rei",
-          "match": "\\b(as|new|default|with|in|ref|use|where|or|and|is)\\b"
+          "match": "\\b(annotation|macro|as|async|new|impl|default|complex|extend|with|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
+        },
+        {
+          "comment": "fn",
+          "name": "keyword.other.fn.rei",
+          "match": "\\bfn\\b"
         },
         {
           "comment": "logical operators",
@@ -336,6 +639,11 @@
           }
         },
         {
+          "comment": "namespace operator",
+          "name": "keyword.operator.namespace.rei",
+          "match": "::"
+        },
+        {
           "comment": "dereference asterisk",
           "match": "(\\*)(?=\\w+)",
           "captures": {
@@ -379,7 +687,7 @@
     "interpolations": {
       "comment": "curly brace interpolations",
       "name": "meta.interpolation.rei",
-      "match": "{[^\"{}]*}",
+      "match": "({)[^\"{}]*(})",
       "captures": {
         "1": {
           "name": "punctuation.definition.interpolation.rei"
@@ -418,7 +726,7 @@
         },
         {
           "comment": "parameterized types",
-          "begin": "\\b([A-Z][A-Za-z0-9]*)\\[",
+          "begin": "\\b([A-Z][A-Za-z0-9]*)(<)",
           "beginCaptures": {
             "1": {
               "name": "entity.name.type.rei"
@@ -427,17 +735,112 @@
               "name": "punctuation.brackets.angle.rei"
             }
           },
-          "end": "\\]",
+          "end": ">",
           "endCaptures": {
             "0": {
               "name": "punctuation.brackets.angle.rei"
             }
-          }
+          },
+          "patterns": [
+            {
+              "include": "#block-comments"
+            },
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#lvariables"
+            },
+            {
+              "include": "#punctuation"
+            },
+            {
+              "include": "#types"
+            },
+            {
+              "include": "#variables"
+            }
+          ]
         },
         {
           "comment": "primitive types",
           "name": "entity.name.type.primitive.rei",
-          "match": "\\b(Bits|Numeric|String|Char|Bool)\\b"
+          "match": "\\b(bool|char|str)\\b"
+        },
+        {
+          "comment": "trait declarations",
+          "match": "\\b(trait)\\s+([A-Z][A-Za-z0-9]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.trait.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.trait.rei"
+            }
+          }
+        },
+        {
+          "comment": "data declarations",
+          "match": "\\b(data)\\s+([A-Z][A-Za-z0-9]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.data.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.data.rei"
+            }
+          }
+        },
+        {
+          "comment": "system declarations",
+          "match": "\\b(system)\\s+([A-Z][A-Za-z0-9]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.system.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.system.rei"
+            }
+          }
+        },
+        {
+          "comment": "enum declarations",
+          "match": "\\b(enum)\\s+([A-Z][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.enum.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.enum.rei"
+            }
+          }
+        },
+        {
+          "comment": "union declarations",
+          "match": "\\b(union)\\s+([A-Z][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.union.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.union.rei"
+            }
+          }
+        },
+        {
+          "comment": "type declarations",
+          "match": "\\b(type)\\s+([A-Z][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.type.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.declaration.rei"
+            }
+          }
         },
         {
           "comment": "types",
@@ -446,8 +849,13 @@
         }
       ]
     },
-    "specialTypes": {
+    "gtypes": {
       "patterns": [
+        {
+          "comment": "option types",
+          "name": "entity.name.type.option.rei",
+          "match": "\\b(Some|None)\\b"
+        },
         {
           "comment": "result types",
           "name": "entity.name.type.result.rei",
@@ -483,9 +891,9 @@
           "match": "[\\[\\]]"
         },
         {
-          "comment": "generic brackets",
-          "name": "punctuation.brackets.generic.rei",
-          "match": "(?<!=)[\\[\\]]"
+          "comment": "angle brackets",
+          "name": "punctuation.brackets.angle.rei",
+          "match": "(?<!=)[<>]"
         }
       ]
     },
@@ -569,7 +977,7 @@
         }
       ]
     },
-    "specialVariables": {
+    "lvariables": {
       "patterns": [
         {
           "comment": "self",
