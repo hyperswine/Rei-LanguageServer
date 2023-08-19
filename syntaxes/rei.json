@@ -222,6 +222,11 @@
           "comment": "doc comments",
           "name": "comment.line.number-sign.rei",
           "match": "#.*"
+        },
+        {
+          "comment": "line documentation comments",
+          "name": "comment.block.documentation.rei",
+          "match": "`.*"
         }
       ]
     },
@@ -574,7 +579,7 @@
         {
           "comment": "other keywords",
           "name": "keyword.other.rei",
-          "match": "\\b(annotation|macro|as|async|new|impl|default|complex|extend|with|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
+          "match": "\\b(annotation|macro|replace|as|async|new|autoimpl|impl|default|complex|extend|with|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
         },
         {
           "comment": "fn",
