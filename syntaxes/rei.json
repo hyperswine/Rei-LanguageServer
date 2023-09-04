@@ -222,11 +222,6 @@
           "comment": "doc comments",
           "name": "comment.line.number-sign.rei",
           "match": "#.*"
-        },
-        {
-          "comment": "line documentation comments",
-          "name": "comment.block.documentation.rei",
-          "match": "`.*"
         }
       ]
     },
@@ -241,8 +236,8 @@
         {
           "comment": "block documentation comments",
           "name": "comment.block.documentation.rei",
-          "begin": "#\\*",
-          "end": "\\*#"
+          "begin": "#\\!",
+          "end": "\\#"
         }
       ]
     },
