@@ -7,24 +7,13 @@
   "scopeName": "source.rei",
   "patterns": [
     {
-      "comment": "annotations",
-      "name": "meta.attribute.rei",
-      "match": "@.*"
-    },
-    {
-      "include": "#block-comments"
-    },
-    {
       "include": "#comments"
     },
     {
-      "include": "#lvariables"
+      "include": "#strings"
     },
     {
       "include": "#literal_constants"
-    },
-    {
-      "include": "#gtypes"
     },
     {
       "include": "#functions"
@@ -39,10 +28,7 @@
       "include": "#punctuation"
     },
     {
-      "include": "#strings"
-    },
-    {
-      "include": "#variables"
+      "include": "#escapes"
     }
   ],
   "repository": {
@@ -235,6 +221,11 @@
           "comment": "result types",
           "name": "entity.name.type.result.rei",
           "match": "\\b(Exist|Error)\\b"
+        },
+        {
+          "comment": "variables",
+          "name": "variable.other.rei",
+          "match": "_?[a-z0-9][a-z0-9_-]*\\b"
         }
       ]
     },
@@ -271,6 +262,28 @@
           "match": "(?<!=)[<>]"
         }
       ]
+    },
+    "escapes": {
+      "comment": "escapes: ASCII, byte, Unicode, quote, regex",
+      "name": "constant.character.escape.rei",
+      "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
+      "captures": {
+        "1": {
+          "name": "constant.character.escape.backslash.rei"
+        },
+        "2": {
+          "name": "constant.character.escape.bit.rei"
+        },
+        "3": {
+          "name": "constant.character.escape.unicode.rei"
+        },
+        "4": {
+          "name": "constant.character.escape.unicode.punctuation.rei"
+        },
+        "5": {
+          "name": "constant.character.escape.unicode.punctuation.rei"
+        }
+      }
     },
     "strings": {
       "patterns": [
@@ -346,15 +359,6 @@
               "include": "#escapes"
             }
           ]
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
-        {
-          "comment": "variables",
-          "name": "variable.other.rei",
-          "match": "_?[a-z0-9][a-z0-9_-]*\\b"
         }
       ]
     }
