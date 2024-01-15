@@ -95,16 +95,6 @@
           }
         },
         {
-          "comment": "octal integers",
-          "name": "constant.numeric.oct.phantasm",
-          "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.numeric.phantasm"
-            }
-          }
-        },
-        {
           "comment": "binary integers",
           "name": "constant.numeric.bin.phantasm",
           "match": "\\b0b[01_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",

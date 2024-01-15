@@ -455,4 +455,233 @@ ANNOTATIONS
             }
           }
         },
+            {
+          "comment": "trait declarations",
+          "match": "\\b(trait)\\s+([A-Z][A-Za-z0-9]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.trait.rei storage.type.rei"
+            },
+            "2": {
+              "name": "entity.name.type.trait.rei"
+            }
+          }
+        },
+
+        // THE NUMERIC STUFF ...
+        // could be USEFUL FOR META.SYS, but more of a semantic thing probably
+        {
+          "comment": "numeric types",
+          "match": "(?<![A-Za-z])(f16|f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.system.rei"
+            }
+          }
+        },
+
+            "lvariables": {
+      "patterns": [
+        {
+          "comment": "self",
+          "name": "variable.language.self.rei",
+          "match": "\\b[Ss]elf\\b"
+        },
+        {
+          "comment": "super",
+          "name": "variable.language.super.rei",
+          "match": "\\bsuper\\b"
+        },
+        {
+          "comment": "pkg",
+          "name": "variable.language.pkg.rei",
+          "match": "\\bpkg\\b"
+        }
+      ]
+    },
+
+            {
+          "comment": "math operators",
+          "name": "keyword.operator.math.rei",
+          "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
+        },
+        {
+          "comment": "less than, greater than (special case)",
+          "match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
+          "captures": {
+            "1": {
+              "name": "punctuation.brackets.round.rei"
+            },
+            "2": {
+              "name": "punctuation.brackets.square.rei"
+            },
+            "3": {
+              "name": "punctuation.brackets.curly.rei"
+            },
+            "4": {
+              "name": "keyword.operator.comparison.rei"
+            },
+            "5": {
+              "name": "punctuation.brackets.round.rei"
+            },
+            "6": {
+              "name": "punctuation.brackets.square.rei"
+            },
+            "7": {
+              "name": "punctuation.brackets.curly.rei"
+            }
+          }
+        },
+        {
+          "comment": "logical operators",
+          "name": "keyword.operator.logical.rei",
+          "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
+        },
+        {
+          "comment": "logical AND, borrow references",
+          "name": "keyword.operator.borrow.and.rei",
+          "match": "&(?![&=])"
+        },
+        {
+          "comment": "assignment operators",
+          "name": "keyword.operator.assignment.rei",
+          "match": "(\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=|<<=|>>=)"
+        },
+        {
+          "comment": "single equal",
+          "name": "keyword.operator.assignment.equal.rei",
+          "match": "(?<![<>])=(?!=|>)"
+        },
+        {
+          "comment": "comparison operators",
+          "name": "keyword.operator.comparison.rei",
+          "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
+        },
+
+        // SEMANTIC HIGHLIGHTING, if defined specifically, kinda
+
+          {
+          "comment": "control flow keywords",
+          "name": "keyword.control.rei",
+          "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield|resume)\\b"
+        },
+        {
+          "comment": "const keyword",
+          "name": "storage.modifier.rei",
+          "match": "\\b(const|extern|let|mut|mod)\\b"
+        },
+        {
+          "comment": "type keyword",
+          "name": "keyword.declaration.type.rei storage.type.rei",
+          "match": "\\b(type)\\b"
+        },
+        {
+          "comment": "enum keyword",
+          "name": "keyword.declaration.enum.rei storage.type.rei",
+          "match": "\\b(enum)\\b"
+        },
+        {
+          "comment": "union keyword",
+          "name": "keyword.declaration.union.rei storage.type.rei",
+          "match": "\\b(union)\\b"
+        },
+        {
+          "comment": "trait keyword",
+          "name": "keyword.declaration.trait.rei storage.type.rei",
+          "match": "\\b(trait)\\b"
+        },
+        {
+          "comment": "data keyword",
+          "name": "keyword.declaration.data.rei storage.type.rei",
+          "match": "\\b(data)\\b"
+        },
+        {
+          "comment": "system keyword",
+          "name": "keyword.declaration.system.rei storage.type.rei",
+          "match": "\\b(system)\\b"
+        },
+        {
+          "comment": "class keyword",
+          "name": "keyword.declaration.class.rei storage.type.rei",
+          "match": "\\b(class)\\b"
+        },
+        {
+          "comment": "other keywords",
+          "name": "keyword.other.rei",
+          "match": "\\b(annotation|macro|replace|as|async|new|autoimpl|impl|transact|default|complex|extend|with|effect|handle|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
+        },
+        {
+          "comment": "Function Keyword Capital...",
+          "name": "keyword.other.fn.rei",
+          "match": "\\bFn\\b"
+        },
+
+  // TOO COMPLEX FOR SYNTAX HIHGLIGHTING PROBABLY
+
+  ,
+    "interpolations": {
+      "comment": "curly brace interpolations",
+      "name": "meta.interpolation.rei",
+      "match": "({)[^\"{}]*(})",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.interpolation.rei"
+        },
+        "2": {
+          "name": "punctuation.definition.interpolation.rei"
+        }
+      }
+    },
+
+  {
+          "comment": "primitive types",
+          "name": "entity.name.type.primitive.rei",
+          "match": "\\b(bool|char|str)\\b"
+        },
+
+  // so apparently you can, if you do, in your string
+  ,
+            {
+              "include": "#interpolations"
+            }
+
+    "patterns": [
+            {
+              "match": "^\\s+(\\w+):\\s+(\\w+)",
+              "name": "meta.field.declaration.custom",
+              "captures": {
+                "1": {
+                  "name": "variable.other.field.custom"
+                },
+                "2": {
+                  "name": "entity.name.type.custom"
+                }
+              }
+            },
+            {
+              "match": "^\\s+(\\w+)",
+              "name": "constant.other.enum.custom"
+            }
+          ]
+
+                  {
+          "comment": "octal integers",
+          "name": "constant.numeric.oct.phantasm",
+          "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.phantasm"
+            }
+          }
+        },
+                {
+          "comment": "octal integers",
+          "name": "constant.numeric.oct.rei",
+          "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
+          "captures": {
+            "1": {
+              "name": "entity.name.type.numeric.rei"
+            }
+          }
+        },
 ```

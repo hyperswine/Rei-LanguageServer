@@ -1,68 +1,68 @@
 {
-    "name": "rei",
-    "displayName": "Rei",
-    "description": "Syntax highlighting for .rei files and the prei build system",
-    "version": "0.1.7",
-    "engines": {
-        "vscode": "^1.63.0"
-    },
-    "icon": "icons/ReiLogo.png",
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "rei",
-                "aliases": [
-                    "Rei",
-                    "rei"
-                ],
-                "extensions": [
-                    ".rei"
-                ],
-                "configuration": "./language-configuration.json",
-                "icon": {
-                    "light": "./icons/Rei.png",
-                    "dark": "./icons/Rei-Light.png"
-                }
-            },
-            {
-                "id": "phantasm",
-                "aliases": [
-                    "Phantasm",
-                    "phantasm",
-                    "pasm"
-                ],
-                "extensions": [
-                    ".asm",
-                    ".pasm"
-                ],
-                "configuration": "./language-configuration.json",
-                "icon": {
-                    "light": "./icons/Phantasm-Light.png",
-                    "dark": "./icons/Phantasm-Dark.png"
-                }
-            }
+  "name": "rei",
+  "displayName": "Rei",
+  "description": "Syntax highlighting for .rei files and the prei build system",
+  "version": "0.1.7",
+  "engines": {
+    "vscode": "^1.63.0"
+  },
+  "icon": "icons/ReiLogo.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "rei",
+        "aliases": [
+          "Rei",
+          "rei"
         ],
-        "grammars": [
-            {
-                "language": "rei",
-                "scopeName": "source.rei",
-                "path": "./syntaxes/rei.json"
-            },
-            {
-                "language": "phantasm",
-                "scopeName": "source.pasm",
-                "path": "./syntaxes/phantasm.json"
-            }
-        ]
-    },
-    "devDependencies": {
-        "js-yaml": "^4.1.0"
-    },
-    "repository": {
-        "url": "https://github.com/hyperswine/rei-lsp"
-    },
-    "publisher": "REILANGUAGE"
+        "extensions": [
+          ".rei"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/Rei.png",
+          "dark": "./icons/Rei-Light.png"
+        }
+      },
+      {
+        "id": "phantasm",
+        "aliases": [
+          "Phantasm",
+          "phantasm",
+          "pasm"
+        ],
+        "extensions": [
+          ".asm",
+          ".pasm"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/Phantasm-Light.png",
+          "dark": "./icons/Phantasm-Dark.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rei",
+        "scopeName": "source.rei",
+        "path": "./syntaxes/rei.json"
+      },
+      {
+        "language": "phantasm",
+        "scopeName": "source.pasm",
+        "path": "./syntaxes/phantasm.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "repository": {
+    "url": "https://github.com/hyperswine/rei-lsp"
+  },
+  "publisher": "REILANGUAGE"
 }

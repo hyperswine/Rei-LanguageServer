@@ -21,7 +21,7 @@
       "include": "#lvariables"
     },
     {
-      "include": "#constants"
+      "include": "#literal_constants"
     },
     {
       "include": "#gtypes"
@@ -33,7 +33,7 @@
       "include": "#types"
     },
     {
-      "include": "#keywords"
+      "include": "#structural_operators"
     },
     {
       "include": "#punctuation"
@@ -57,11 +57,7 @@
           "comment": "doc comments",
           "name": "comment.line.number-sign.rei",
           "match": "#.*"
-        }
-      ]
-    },
-    "block-comments": {
-      "patterns": [
+        },
         {
           "comment": "general block comments",
           "name": "comment.block.rei",
@@ -76,7 +72,7 @@
         }
       ]
     },
-    "constants": {
+    "literal_constants": {
       "patterns": [
         {
           "comment": "decimal integers and floats",
@@ -111,16 +107,6 @@
           }
         },
         {
-          "comment": "octal integers",
-          "name": "constant.numeric.oct.rei",
-          "match": "\\b0o[0-7_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.numeric.rei"
-            }
-          }
-        },
-        {
           "comment": "binary integers",
           "name": "constant.numeric.bin.rei",
           "match": "\\b0b[01_]+(i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)?\\b",
@@ -131,33 +117,28 @@
           }
         },
         {
-          "comment": "booleans",
-          "name": "constant.language.bool.rei",
-          "match": "\\b(true|false)\\b"
+          "comment": "escapes: ASCII, byte, Unicode, quote, regex",
+          "name": "constant.character.escape.rei",
+          "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
+          "captures": {
+            "1": {
+              "name": "constant.character.escape.backslash.rei"
+            },
+            "2": {
+              "name": "constant.character.escape.bit.rei"
+            },
+            "3": {
+              "name": "constant.character.escape.unicode.rei"
+            },
+            "4": {
+              "name": "constant.character.escape.unicode.punctuation.rei"
+            },
+            "5": {
+              "name": "constant.character.escape.unicode.punctuation.rei"
+            }
+          }
         }
       ]
-    },
-    "escapes": {
-      "comment": "escapes: ASCII, byte, Unicode, quote, regex",
-      "name": "constant.character.escape.rei",
-      "match": "(\\\\)(?:(?:(x[0-7][0-7a-fA-F])|(u(\\{)[\\da-fA-F]{4,6}(\\}))|.))",
-      "captures": {
-        "1": {
-          "name": "constant.character.escape.backslash.rei"
-        },
-        "2": {
-          "name": "constant.character.escape.bit.rei"
-        },
-        "3": {
-          "name": "constant.character.escape.unicode.rei"
-        },
-        "4": {
-          "name": "constant.character.escape.unicode.punctuation.rei"
-        },
-        "5": {
-          "name": "constant.character.escape.unicode.punctuation.rei"
-        }
-      }
     },
     "functions": {
       "patterns": [
@@ -165,132 +146,30 @@
           "comment": "annotation definition",
           "name": "meta.annotation.definition.rei",
           "match": "\\b(@)\\s+([A-Z][A-Za-z0-9]*)"
+        },
+        {
+          "comment": "function",
+          "name": "meta.type.function.rei",
+          "match": "\\b([a-z_][a-zA-Z0-9_\\-]*)\\:",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.rei"
+            }
+          }
         }
       ]
     },
-    "keywords": {
+    "structural_operators": {
       "patterns": [
-        {
-          "comment": "control flow keywords",
-          "name": "keyword.control.rei",
-          "match": "\\b(await|break|continue|do|else|for|if|loop|match|return|while|yield|resume)\\b"
-        },
-        {
-          "comment": "const keyword",
-          "name": "storage.modifier.rei",
-          "match": "\\b(const|extern|let|mut|mod)\\b"
-        },
-        {
-          "comment": "type keyword",
-          "name": "keyword.declaration.type.rei storage.type.rei",
-          "match": "\\b(type)\\b"
-        },
-        {
-          "comment": "enum keyword",
-          "name": "keyword.declaration.enum.rei storage.type.rei",
-          "match": "\\b(enum)\\b"
-        },
-        {
-          "comment": "union keyword",
-          "name": "keyword.declaration.union.rei storage.type.rei",
-          "match": "\\b(union)\\b"
-        },
-        {
-          "comment": "trait keyword",
-          "name": "keyword.declaration.trait.rei storage.type.rei",
-          "match": "\\b(trait)\\b"
-        },
-        {
-          "comment": "data keyword",
-          "name": "keyword.declaration.data.rei storage.type.rei",
-          "match": "\\b(data)\\b"
-        },
-        {
-          "comment": "system keyword",
-          "name": "keyword.declaration.system.rei storage.type.rei",
-          "match": "\\b(system)\\b"
-        },
-        {
-          "comment": "class keyword",
-          "name": "keyword.declaration.class.rei storage.type.rei",
-          "match": "\\b(class)\\b"
-        },
-        {
-          "comment": "other keywords",
-          "name": "keyword.other.rei",
-          "match": "\\b(annotation|macro|replace|as|async|new|autoimpl|impl|transact|default|complex|extend|with|effect|handle|in|pub|internal|require|ref|unsafe|use|where|or|and|is|static)\\b"
-        },
-        {
-          "comment": "Function Keyword Capital...",
-          "name": "keyword.other.fn.rei",
-          "match": "\\bFn\\b"
-        },
-        {
-          "comment": "logical operators",
-          "name": "keyword.operator.logical.rei",
-          "match": "(\\^|\\||\\|\\||&&|<<|>>|!)(?!=)"
-        },
-        {
-          "comment": "logical AND, borrow references",
-          "name": "keyword.operator.borrow.and.rei",
-          "match": "&(?![&=])"
-        },
-        {
-          "comment": "assignment operators",
-          "name": "keyword.operator.assignment.rei",
-          "match": "(\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=|<<=|>>=)"
-        },
-        {
-          "comment": "single equal",
-          "name": "keyword.operator.assignment.equal.rei",
-          "match": "(?<![<>])=(?!=|>)"
-        },
-        {
-          "comment": "comparison operators",
-          "name": "keyword.operator.comparison.rei",
-          "match": "(=(=)?(?!>)|!=|<=|(?<!=)>=)"
-        },
-        {
-          "comment": "math operators",
-          "name": "keyword.operator.math.rei",
-          "match": "(([+%]|(\\*(?!\\w)))(?!=))|(-(?!>))|(/(?!/))"
-        },
-        {
-          "comment": "less than, greater than (special case)",
-          "match": "(?:\\b|(?:(\\))|(\\])|(\\})))[ \\t]+([<>])[ \\t]+(?:\\b|(?:(\\()|(\\[)|(\\{)))",
-          "captures": {
-            "1": {
-              "name": "punctuation.brackets.round.rei"
-            },
-            "2": {
-              "name": "punctuation.brackets.square.rei"
-            },
-            "3": {
-              "name": "punctuation.brackets.curly.rei"
-            },
-            "4": {
-              "name": "keyword.operator.comparison.rei"
-            },
-            "5": {
-              "name": "punctuation.brackets.round.rei"
-            },
-            "6": {
-              "name": "punctuation.brackets.square.rei"
-            },
-            "7": {
-              "name": "punctuation.brackets.curly.rei"
-            }
-          }
-        },
         {
           "comment": "dot access",
           "name": "keyword.operator.access.dot.rei",
           "match": "\\.(?!\\.)"
         },
         {
-          "comment": "ranges, range patterns",
+          "comment": "ranges ..",
           "name": "keyword.operator.range.rei",
-          "match": "\\.{2}(=|\\.)?"
+          "match": "\\.{2}"
         },
         {
           "comment": "colon",
@@ -298,71 +177,59 @@
           "match": ":(?!:)"
         },
         {
-          "comment": "dashrocket, skinny arrow",
+          "comment": "dashrocket",
           "name": "keyword.operator.arrow.skinny.rei",
           "match": "->"
         },
         {
-          "comment": "hashrocket, fat arrow",
+          "comment": "hashrocket",
           "name": "keyword.operator.arrow.fat.rei",
           "match": "=>"
         }
       ]
     },
-    "interpolations": {
-      "comment": "curly brace interpolations",
-      "name": "meta.interpolation.rei",
-      "match": "({)[^\"{}]*(})",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.interpolation.rei"
-        },
-        "2": {
-          "name": "punctuation.definition.interpolation.rei"
-        }
-      }
-    },
     "types": {
       "patterns": [
-        {
-          "comment": "numeric types",
-          "match": "(?<![A-Za-z])(f16|f32|f64|i128|i16|i32|i64|i8|isize|u128|u16|u32|u64|u8|usize)\\b",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.numeric.system.rei"
-            }
-          }
-        },
-        {
-          "comment": "primitive types",
-          "name": "entity.name.type.primitive.rei",
-          "match": "\\b(bool|char|str)\\b"
-        },
-        {
-          "comment": "trait declarations",
-          "match": "\\b(trait)\\s+([A-Z][A-Za-z0-9]*)\\b",
-          "captures": {
-            "1": {
-              "name": "keyword.declaration.trait.rei storage.type.rei"
-            },
-            "2": {
-              "name": "entity.name.type.trait.rei"
-            }
-          }
-        },
         {
           "comment": "types",
           "name": "entity.name.type.rei",
           "match": "\\b[A-Z][A-Za-z0-9]*\\b(?!!)"
-        }
-      ]
-    },
-    "gtypes": {
-      "patterns": [
+        },
+        {
+          "comment": "booleans",
+          "name": "constant.language.bool.rei",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "comment": "enum keyword",
+          "name": "keyword.declaration.enum.rei storage.type.rei",
+          "match": "\\b(enum)\\b"
+        },
+        {
+          "comment": "data keyword",
+          "name": "keyword.declaration.data.rei storage.type.rei",
+          "match": "\\b(data)\\b"
+        },
+        {
+          "comment": "seq keyword",
+          "name": "keyword.declaration.seq.rei storage.type.rei",
+          "match": "\\b(seq)\\b"
+        },
+        {
+          "match": "\\b\\[A-Z][A-Za-z0-9]*\\s*:\\s*(data|enum)",
+          "captures": {
+            "1": {
+              "name": "entity.name.struct"
+            },
+            "2": {
+              "name": "keyword.declaration storage.type.rei"
+            }
+          }
+        },
         {
           "comment": "option types",
           "name": "entity.name.type.option.rei",
-          "match": "\\b(Some|None)\\b"
+          "match": "\\b(Just|None)\\b"
         },
         {
           "comment": "result types",
@@ -428,9 +295,6 @@
           "patterns": [
             {
               "include": "#escapes"
-            },
-            {
-              "include": "#interpolations"
             }
           ]
         },
@@ -482,25 +346,6 @@
               "include": "#escapes"
             }
           ]
-        }
-      ]
-    },
-    "lvariables": {
-      "patterns": [
-        {
-          "comment": "self",
-          "name": "variable.language.self.rei",
-          "match": "\\b[Ss]elf\\b"
-        },
-        {
-          "comment": "super",
-          "name": "variable.language.super.rei",
-          "match": "\\bsuper\\b"
-        },
-        {
-          "comment": "pkg",
-          "name": "variable.language.pkg.rei",
-          "match": "\\bpkg\\b"
         }
       ]
     },
