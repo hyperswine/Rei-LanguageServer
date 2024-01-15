@@ -1,6 +1,6 @@
-#*
+/*
   REI LSP FUNCTIONALITY
-*#
+*/
 
 Line: Int
 
@@ -8,10 +8,10 @@ Context: complex
   curr_line: Line
   curr_char: Int
   open_files: Vec<File>
-  proj: prei::Project
+  proj: prei.Project
 
 /*
-  The below this can be wrapped with core::state that makes things as safe as possible
+  The below this can be wrapped with core.state that makes things as safe as possible
   let context, set_context = State(Context())
   OR JUST:
   @state context = Context()
@@ -51,15 +51,15 @@ export goto_def: (item: Item) -> File?
 // Vec can be a stack object. The IDE reveals whether it is with <stack> or <heap>
 // similar to dynamic dispatch, but dynamic dispatch is explicit
 
-#*
-  $params:
-    $1: a manageable item
-  $return: A list of candidates that match the query
-*#
+/*
+  @params:
+    @1: a manageable item
+  @return: A list of candidates that match the query
+*/
 export find_item: (item: Item) -> Vec<File>
   // otherwise find it in the list of open files
   // otherwise query the entire project prei from the root
-  let files = prei::files(proj)
+  let files = prei.files(proj)
   // for each file belonging to the project (registered module), if we didnt already search through them, open it and try to find the item
   // MAYBE: when you start rein, you "semi open" the files. Or you keep them in cache as you start opening and maybe closing them. Closing them in rein doesnt actually close them until you close the IDE process
   // NOTE: collect() and Vec<T> are great tools for this use case
@@ -67,4 +67,4 @@ export find_item: (item: Item) -> Vec<File>
 
 // get compiler checks as you add/remove code => prei check => reic --check
 export prei_check: ()
-  prei::check(proj)
+  prei.check(proj)
