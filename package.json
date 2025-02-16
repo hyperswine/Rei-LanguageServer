@@ -10,6 +10,10 @@
   "categories": [
     "Programming Languages"
   ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
   "contributes": {
     "languages": [
       {
@@ -59,14 +63,14 @@
     ],
     "commands": [
       {
-        "title": "Enable CodeLens",
+        "title": "Turn on CodeLens",
         "command": "rei.enableCodeLens",
-        "category": "CodeLens Sample"
+        "category": "Rei CodeLens"
       },
       {
-        "title": "Disable Codelens",
+        "title": "Turn off Codelens",
         "command": "rei.disableCodeLens",
-        "category": "CodeLens Sample"
+        "category": "Rei CodeLens"
       }
     ],
     "configuration": {

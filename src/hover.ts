@@ -39,8 +39,8 @@ export class CodelensProvider implements vscode.CodeLensProvider {
   public resolveCodeLens(codeLens: vscode.CodeLens, token: vscode.CancellationToken) {
     if (vscode.workspace.getConfiguration("rei").get("enableCodeLens", true)) {
       codeLens.command = {
-        title: "Codelens provided by sample extension",
-        tooltip: "Tooltip provided by sample extension",
+        title: "Codelens on top of code",
+        tooltip: "This is a Tooltip",
         command: "rei.codelensAction",
         arguments: ["Argument 1", false]
       }
